@@ -384,6 +384,28 @@ ul {
     padding-top: 1rem;
 }
 
+.project-footer {
+    padding: 1rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid var(--border-color);
+    text-align: right;
+}
+
+.btn-text {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: 0.3s;
+}
+
+.project-card:hover .btn-text,
+.project-card.mobile-ready .btn-text {
+    transform: translateX(5px);
+}
+
 /* CONTACT */
 .contact-container {
     text-align: center;
