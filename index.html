@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -7,289 +7,430 @@
     <title>Alwyn Roy | Cloud DevOps & FinOps Engineer</title>
     <meta name="description"
         content="Portfolio of Alwyn Roy - Cloud DevOps & FinOps Engineer specializing in AWS, automation, and cost optimization.">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        bg: '#0a0f1c',
+                        card: '#111827',
+                        accent: '#38bdf8',
+                        'accent-hover': '#0ea5e9',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles that act as overrides or specific animations */
+        body {
+            background-color: #0a0f1c;
+            /* Fallback */
+        }
+
+        /* 3D Tilt Specifics */
+        .project-card {
+            transform-style: preserve-3d;
+            will-change: transform;
+            transition: transform 0.1s ease-out;
+            /* Smooth follow */
+        }
+
+        /* Perspective container is handled in grid utility or inline */
+
+        .tilt-active {
+            /* Shadow handled by JS or utility, but here for reference */
+        }
+
+        /* Timeline Dot Customization */
+        .timeline-dot {
+            box-shadow: 0 0 0 4px #0a0f1c;
+        }
+
+        /* Mobile Menu Animation */
+        .nav-menu {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-bg text-white font-sans antialiased overflow-x-hidden">
 
-    <!-- Header / Navigation -->
-    <header class="header">
-        <div class="container nav-container">
-            <a href="#" class="logo">Alwyn <span class="highlight">Roy</span></a>
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="#experience" class="nav-link">Experience</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 bg-[#0a0f1c]/95 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-tight hover:text-accent transition-colors">Alwyn <span
+                    class="text-accent">Roy</span></a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#about" class="text-gray-400 hover:text-accent text-sm font-medium transition-colors">About</a>
+                <a href="#skills"
+                    class="text-gray-400 hover:text-accent text-sm font-medium transition-colors">Skills</a>
+                <a href="#experience"
+                    class="text-gray-400 hover:text-accent text-sm font-medium transition-colors">Experience</a>
+                <a href="#projects"
+                    class="text-gray-400 hover:text-accent text-sm font-medium transition-colors">Projects</a>
+                <a href="#contact"
+                    class="text-gray-400 hover:text-accent text-sm font-medium transition-colors">Contact</a>
+                <a href="resume.pdf" target="_blank"
+                    class="px-5 py-2 bg-accent text-black font-semibold rounded-lg hover:bg-accent-hover transition-colors">View
+                    Resume</a>
             </nav>
-            <div class="header-btns">
-                <a href="resume.pdf" class="btn btn-primary" target="_blank">View Resume</a>
-            </div>
-            <div class="hamburger">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
+
+            <!-- Mobile Hamburger -->
+            <button class="md:hidden text-2xl text-white focus:outline-none hamburger-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div
+            class="nav-menu md:hidden absolute top-full left-0 w-full bg-card border-b border-gray-800 p-6 flex flex-col gap-4 opacity-0 -translate-y-5 pointer-events-none">
+            <a href="#about" class="text-gray-300 hover:text-accent">About</a>
+            <a href="#skills" class="text-gray-300 hover:text-accent">Skills</a>
+            <a href="#experience" class="text-gray-300 hover:text-accent">Experience</a>
+            <a href="#projects" class="text-gray-300 hover:text-accent">Projects</a>
+            <a href="#contact" class="text-gray-300 hover:text-accent">Contact</a>
+            <a href="resume.pdf" target="_blank" class="text-accent font-semibold">View Resume</a>
         </div>
     </header>
 
-    <main>
+    <main class="pt-24">
         <!-- HERO SECTION -->
-        <section id="hero" class="hero">
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <span class="role-badge">Cloud DevOps & FinOps Engineer</span>
-                    <h1 class="hero-title">Alwyn Roy</h1>
-                    <p class="hero-tagline">I design, automate, and optimize cloud infrastructure to reduce cost and
-                        improve reliability.</p>
-                    <div class="hero-btns">
-                        <a href="resume.pdf" class="btn btn-primary" target="_blank">View Resume</a>
-                        <a href="#contact" class="btn btn-outline">Contact Me</a>
-                    </div>
+        <section id="hero" class="min-h-[85vh] flex items-center justify-center relative px-6">
+            <div class="max-w-4xl w-full">
+                <span
+                    class="inline-block py-1 px-3 rounded-full bg-accent/10 text-accent text-sm font-semibold tracking-wide mb-6">Cloud
+                    DevOps & FinOps Engineer</span>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
+                    I design, automate, and <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-600">optimize
+                        cloud</span> infrastructure.
+                </h1>
+                <p class="text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
+                    Based in Kochi. I help organizations reduce cloud costs by up to 15% whilst improving reliability
+                    through robust automation and FinOps strategies.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="resume.pdf" target="_blank"
+                        class="px-8 py-3 bg-accent text-black font-semibold rounded-lg hover:scale-105 transition-transform">View
+                        Resume</a>
+                    <a href="#contact"
+                        class="px-8 py-3 border border-gray-600 text-white font-semibold rounded-lg hover:border-accent hover:text-accent transition-colors">Contact
+                        Me</a>
                 </div>
+            </div>
+
+            <!-- Background Glow -->
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] -z-10">
             </div>
         </section>
 
         <!-- ABOUT SECTION -->
-        <section id="about" class="section about">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">About Me</h2>
-                </div>
-                <div class="about-content">
-                    <!-- <div class="about-image"> ... (Optional: Add photo if provided) ... </div> -->
-                    <div class="about-text">
-                        <p>I am a Cloud DevOps Engineer with over 3.6 years of hands-on experience designing and
-                            managing scalable AWS environments.</p>
-                        <p>My core focus is on bridging the gap between engineering and finance (FinOps). I specialize
-                            in using automation to optimize cloud costs, improve system reliability, and streamline
-                            deployment pipelines.</p>
-                        <p>Whether it's right-sizing infrastructure or building robust CI/CD workflows, I am driven by
-                            the goal of creating efficient, cost-effective cloud solutions.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SKILLS SECTION (Grouped) -->
-        <section id="skills" class="section skills">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Technical Skills</h2>
-                </div>
-                <div class="skills-wrapper">
-                    <div class="skill-group">
-                        <h3><i class="fas fa-cloud"></i> Cloud & Infrastructure</h3>
-                        <ul class="skill-list">
-                            <li>AWS (EC2, S3, RDS, Lambda, VPC)</li>
-                            <li>GCP</li>
-                            <li>IAM & Security Groups</li>
-                            <li>CloudFront</li>
-                        </ul>
-                    </div>
-                    <div class="skill-group">
-                        <h3><i class="fas fa-cogs"></i> DevOps & Automation</h3>
-                        <ul class="skill-list">
-                            <li>Terraform (IaC)</li>
-                            <li>Docker & ECS</li>
-                            <li>Jenkins & GitHub Actions</li>
-                            <li>CI/CD Pipelines</li>
-                        </ul>
-                    </div>
-                    <div class="skill-group">
-                        <h3><i class="fas fa-chart-line"></i> Monitoring & FinOps</h3>
-                        <ul class="skill-list">
-                            <li>AWS Cost Explorer</li>
-                            <li>CloudWatch</li>
-                            <li>CloudHealth & CloudAbility</li>
-                            <li>Cost Optimization & Budgets</li>
-                        </ul>
-                    </div>
+        <section id="about" class="py-24 px-6 bg-card/30">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-3xl font-bold mb-12 border-l-4 border-accent pl-4">About Me</h2>
+                <div class="space-y-6 text-lg text-gray-400 leading-relaxed">
+                    <p>
+                        I am a <strong class="text-white">Cloud DevOps Engineer</strong> with over 3.6 years of hands-on
+                        experience designing and managing scalable AWS environments.
+                    </p>
+                    <p>
+                        My core focus is on bridging the gap between engineering and finance (FinOps). I specialize in
+                        using automation to <strong class="text-white">optimize cloud costs</strong>, improve system
+                        reliability, and streamline deployment pipelines.
+                    </p>
+                    <p>
+                        Whether it's right-sizing infrastructure or building robust CI/CD workflows, I am driven by the
+                        goal of creating efficient, cost-effective cloud solutions.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- EXPERIENCE SECTION (Timeline) -->
-        <section id="experience" class="section experience">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Experience</h2>
-                </div>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">August 2022 - Present</span>
-                            <h3>Software Engineer (Cloud DevOps)</h3>
-                            <h4 class="company">Abilytics Consulting Pvt Ltd</h4>
-                            <ul class="timeline-bullets">
-                                <li><strong>Cost Reduction:</strong> Achieved a ~15% reduction in monthly cloud
-                                    expenditure through rightsizing and automated cleanup.</li>
-                                <li><strong>FinOps Governance:</strong> Spearheaded initiatives using
-                                    CloudHealth/CloudAbility and implemented strong tagging strategies.</li>
-                                <li><strong>IaC Adoption:</strong> Automating critical infrastructure provisioning (EC2,
-                                    RDS, VPC) using Terraform, reducing setup time from hours to minutes.</li>
-                                <li><strong>CI/CD:</strong> Built Jenkins/GitHub Actions pipelines to automate build and
-                                    deployment for containerized applications (Docker/ECS).</li>
-                            </ul>
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="py-24 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-3xl font-bold mb-12 border-l-4 border-accent pl-4">Technical Skills</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Group 1 -->
+                    <div
+                        class="bg-card p-8 rounded-2xl border border-gray-800 hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-3 mb-6">
+                            <i class="fas fa-cloud text-2xl text-accent"></i>
+                            <h3 class="text-xl font-bold">Cloud & Infrastructure</h3>
                         </div>
+                        <ul class="space-y-3 text-gray-400">
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> AWS
+                                (EC2, S3, RDS, Lambda)</li>
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> Google
+                                Cloud Platform (GCP)</li>
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> IAM &
+                                Security Groups</li>
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span>
+                                CloudFront & VPC</li>
+                        </ul>
                     </div>
-                    <!-- Add previous roles if any, currently based on provided resume only one major role is detailed -->
+
+                    <!-- Group 2 -->
+                    <div
+                        class="bg-card p-8 rounded-2xl border border-gray-800 hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-3 mb-6">
+                            <i class="fas fa-cogs text-2xl text-accent"></i>
+                            <h3 class="text-xl font-bold">DevOps & Automation</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-400">
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span>
+                                Terraform (IaC)</li>
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> Docker
+                                & ECS</li>
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> Jenkins
+                                & GitHub Actions</li>
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> CI/CD
+                                Pipelines</li>
+                        </ul>
+                    </div>
+
+                    <!-- Group 3 -->
+                    <div
+                        class="bg-card p-8 rounded-2xl border border-gray-800 hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-3 mb-6">
+                            <i class="fas fa-chart-line text-2xl text-accent"></i>
+                            <h3 class="text-xl font-bold">Monitoring & FinOps</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-400">
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> AWS
+                                Cost Explorer</li>
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span>
+                                CloudWatch</li>
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span>
+                                CloudHealth & CloudAbility</li>
+                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> Budgets
+                                & Anomaly Detection</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- PROJECTS SECTION (Cards) -->
-        <section id="projects" class="section projects">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Featured Projects</h2>
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience" class="py-24 px-6 bg-card/30">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-3xl font-bold mb-12 border-l-4 border-accent pl-4">Experience</h2>
+                <div class="relative border-l-2 border-gray-800 ml-3 pl-8 space-y-12">
+                    <!-- Job 1 -->
+                    <div class="relative">
+                        <div
+                            class="timeline-dot absolute -left-[41px] top-1.5 w-5 h-5 bg-accent rounded-full border-4 border-bg">
+                        </div>
+                        <span class="text-accent font-medium text-sm mb-1 block">August 2022 - Present</span>
+                        <h3 class="text-2xl font-bold text-white mb-1">Software Engineer (Cloud DevOps)</h3>
+                        <h4 class="text-gray-400 text-lg mb-4">Abilytics Consulting Pvt Ltd</h4>
+                        <ul class="space-y-3 text-gray-400 list-disc ml-4">
+                            <li><strong class="text-white">Cost Reduction:</strong> Achieved a ~15% reduction in monthly
+                                cloud expenditure through rightsizing and automated cleanup.</li>
+                            <li><strong class="text-white">FinOps Governance:</strong> Spearheaded initiatives using
+                                CloudHealth/CloudAbility and implemented strong tagging strategies.</li>
+                            <li><strong class="text-white">IaC Adoption:</strong> Automating critical infrastructure
+                                provisioning (EC2, RDS, VPC) using Terraform, reducing setup time from hours to minutes.
+                            </li>
+                            <li><strong class="text-white">CI/CD:</strong> Built Jenkins/GitHub Actions pipelines to
+                                automate build and deployment for containerized applications (Docker/ECS).</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="projects-grid">
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION (3D CARDS) -->
+        <section id="projects" class="py-24 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-3xl font-bold mb-12 border-l-4 border-accent pl-4">Featured Projects</h2>
+
+                <!-- Grid Container with Perspective -->
+                <div class="grid md:grid-cols-3 gap-8 [perspective:1000px]">
+
                     <!-- Project 1 -->
-                    <div class="project-card" data-link="https://github.com/alwyn-roy">
-                        <!-- Added data-link for JS handling -->
-                        <div class="project-header">
-                            <h3>AWS Cost Optimization System</h3>
-                        </div>
-                        <div class="project-body">
-                            <div class="project-row">
-                                <span class="label">Problem:</span>
-                                <span class="value">Cloud cost was uncontrolled across multiple accounts with unused
-                                    resources adding up.</span>
-                            </div>
-                            <div class="project-row">
-                                <span class="label">Solution:</span>
-                                <span class="value">Built cron-based automation scripts using Python (Boto3) and Lambda
-                                    to identify and delete unattached EBS volumes and stale snapshots.</span>
-                            </div>
-                            <div class="project-row">
-                                <span class="label">Tools:</span>
-                                <div class="tech-tags">
-                                    <span>Python</span><span>AWS Lambda</span><span>CloudWatch</span>
+                    <div class="project-card group relative bg-card rounded-2xl border border-gray-800 h-full flex flex-col justify-between"
+                        data-link="https://github.com/alwyn-roy">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-6 text-white group-hover:text-accent transition-colors">AWS
+                                Cost Optimization System</h3>
+                            <div class="space-y-4 text-sm">
+                                <div>
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Problem</span>
+                                    <p class="text-gray-300">Uncontrolled cloud costs across multiple accounts and
+                                        unused resources.</p>
+                                </div>
+                                <div>
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Solution</span>
+                                    <p class="text-gray-300">Cron-based Python/Lambda automation to delete unattached
+                                        EBS volumes & stale snapshots.</p>
+                                </div>
+                                <div>
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Tools</span>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">Python</span>
+                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">Lambda</span>
+                                        <span
+                                            class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">CloudWatch</span>
+                                    </div>
+                                </div>
+                                <div class="pt-4 border-t border-gray-800 border-dashed">
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Result</span>
+                                    <p class="text-accent font-medium">Reduced monthly spend by ~15%.</p>
                                 </div>
                             </div>
-                            <div class="project-row result-row">
-                                <span class="label">Result:</span>
-                                <span class="value highlight-text">Enabled daily abuse tracking and reduced monthly
-                                    spend by ~15%.</span>
-                            </div>
                         </div>
-                        <div class="project-footer">
-                            <span class="btn-text">View Details <i class="fas fa-arrow-right"></i></span>
+                        <div class="p-4 bg-black/20 border-t border-gray-800 text-right">
+                            <span
+                                class="text-sm font-medium text-accent inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </span>
                         </div>
                     </div>
 
                     <!-- Project 2 -->
-                    <div class="project-card" data-link="https://github.com/alwyn-roy">
-                        <div class="project-header">
-                            <h3>End-to-End CI/CD Automation</h3>
-                        </div>
-                        <div class="project-body">
-                            <div class="project-row">
-                                <span class="label">Problem:</span>
-                                <span class="value">Manual deployments were error-prone and time-consuming.</span>
-                            </div>
-                            <div class="project-row">
-                                <span class="label">Solution:</span>
-                                <span class="value">Designed Jenkins pipelines to automate Docker image builds,
-                                    vulnerability scanning, and ECS deployment.</span>
-                            </div>
-                            <div class="project-row">
-                                <span class="label">Tools:</span>
-                                <div class="tech-tags">
-                                    <span>Jenkins</span><span>Docker</span><span>AWS ECS</span><span>GitHub</span>
+                    <div class="project-card group relative bg-card rounded-2xl border border-gray-800 h-full flex flex-col justify-between"
+                        data-link="https://github.com/alwyn-roy">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-6 text-white group-hover:text-accent transition-colors">
+                                End-to-End CI/CD Automation</h3>
+                            <div class="space-y-4 text-sm">
+                                <div>
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Problem</span>
+                                    <p class="text-gray-300">Manual deployments were error-prone and time-consuming.</p>
+                                </div>
+                                <div>
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Solution</span>
+                                    <p class="text-gray-300">Designed Jenkins pipelines to automate Docker build, scan,
+                                        and ECS deploy.</p>
+                                </div>
+                                <div>
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Tools</span>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">Jenkins</span>
+                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">Docker</span>
+                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">ECS</span>
+                                    </div>
+                                </div>
+                                <div class="pt-4 border-t border-gray-800 border-dashed">
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Result</span>
+                                    <p class="text-accent font-medium">Reduced manual effort by ~70%.</p>
                                 </div>
                             </div>
-                            <div class="project-row result-row">
-                                <span class="label">Result:</span>
-                                <span class="value highlight-text">Reduced manual deployment effort by ~70% and improved
-                                    release consistency.</span>
-                            </div>
                         </div>
-                        <div class="project-footer">
-                            <span class="btn-text">View Details <i class="fas fa-arrow-right"></i></span>
+                        <div class="p-4 bg-black/20 border-t border-gray-800 text-right">
+                            <span
+                                class="text-sm font-medium text-accent inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </span>
                         </div>
                     </div>
 
                     <!-- Project 3 -->
-                    <div class="project-card" data-link="https://github.com/alwyn-roy">
-                        <div class="project-header">
-                            <h3>Serverless Cost Monitoring</h3>
-                        </div>
-                        <div class="project-body">
-                            <div class="project-row">
-                                <span class="label">Problem:</span>
-                                <span class="value">Lack of visibility into daily cost spikes and budget
-                                    anomalies.</span>
-                            </div>
-                            <div class="project-row">
-                                <span class="label">Solution:</span>
-                                <span class="value">Implemented a serverless solution using AWS Lambda and EventBridge
-                                    to schedule cost checks and trigger SNS alerts.</span>
-                            </div>
-                            <div class="project-row">
-                                <span class="label">Tools:</span>
-                                <div class="tech-tags">
-                                    <span>Lambda</span><span>EventBridge</span><span>SNS</span>
+                    <div class="project-card group relative bg-card rounded-2xl border border-gray-800 h-full flex flex-col justify-between"
+                        data-link="https://github.com/alwyn-roy">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-6 text-white group-hover:text-accent transition-colors">
+                                Serverless Cost Monitoring</h3>
+                            <div class="space-y-4 text-sm">
+                                <div>
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Problem</span>
+                                    <p class="text-gray-300">Lack of visibility into daily cost spikes and anomalies.
+                                    </p>
+                                </div>
+                                <div>
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Solution</span>
+                                    <p class="text-gray-300">Serverless solution (Lambda + EventBridge) to schedule cost
+                                        checks & trigger alerts.</p>
+                                </div>
+                                <div>
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Tools</span>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">Lambda</span>
+                                        <span
+                                            class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">EventBridge</span>
+                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">SNS</span>
+                                    </div>
+                                </div>
+                                <div class="pt-4 border-t border-gray-800 border-dashed">
+                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Result</span>
+                                    <p class="text-accent font-medium">Early detection of unexpected spend.</p>
                                 </div>
                             </div>
-                            <div class="project-row result-row">
-                                <span class="label">Result:</span>
-                                <span class="value highlight-text">Improved financial accountability and early detection
-                                    of unexpected spend.</span>
-                            </div>
                         </div>
-                        <div class="project-footer">
-                            <span class="btn-text">View Details <i class="fas fa-arrow-right"></i></span>
+                        <div class="p-4 bg-black/20 border-t border-gray-800 text-right">
+                            <span
+                                class="text-sm font-medium text-accent inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
         <!-- CONTACT SECTION -->
-        <section id="contact" class="section contact">
-            <div class="container contact-container">
-                <h2 class="section-title">Let's work together</h2>
-                <div class="contact-links">
-                    <a href="mailto:alwynroy79@gmail.com" class="contact-link">
-                        <i class="fas fa-envelope"></i> alwynroy79@gmail.com
+        <section id="contact" class="py-24 px-6 bg-card/30">
+            <div class="container mx-auto max-w-2xl text-center">
+                <h2 class="text-3xl font-bold mb-8">Let's work together</h2>
+                <div class="flex flex-wrap justify-center gap-8 mb-12">
+                    <a href="mailto:alwynroy79@gmail.com"
+                        class="flex items-center gap-2 text-gray-300 hover:text-accent transition-colors">
+                        <i class="fas fa-envelope text-xl"></i> alwynroy79@gmail.com
                     </a>
-                    <a href="https://linkedin.com/in/alwyn-roy" target="_blank" class="contact-link">
-                        <i class="fab fa-linkedin"></i> LinkedIn
+                    <a href="https://linkedin.com/in/alwyn-roy" target="_blank"
+                        class="flex items-center gap-2 text-gray-300 hover:text-accent transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i> LinkedIn
                     </a>
-                    <a href="#" class="contact-link"> <!-- Add GitHub link if available -->
-                        <i class="fab fa-github"></i> GitHub
+                    <a href="https://github.com/alwyn-roy" target="_blank"
+                        class="flex items-center gap-2 text-gray-300 hover:text-accent transition-colors">
+                        <i class="fab fa-github text-xl"></i> GitHub
                     </a>
                 </div>
-                <!-- Optional Simple Form -->
-                <form class="simple-form" action="mailto:alwynroy79@gmail.com" method="POST" enctype="text/plain">
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <textarea name="message" placeholder="Message" required></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+
+                <form class="space-y-4 text-left" action="mailto:alwynroy79@gmail.com" method="POST"
+                    enctype="text/plain">
+                    <div>
+                        <input type="text" name="name" placeholder="Your Name" required
+                            class="w-full p-4 bg-card border border-gray-800 rounded-lg focus:outline-none focus:border-accent text-white">
+                    </div>
+                    <div>
+                        <input type="email" name="email" placeholder="Your Email" required
+                            class="w-full p-4 bg-card border border-gray-800 rounded-lg focus:outline-none focus:border-accent text-white">
+                    </div>
+                    <div>
+                        <textarea name="message" rows="4" placeholder="Your Message" required
+                            class="w-full p-4 bg-card border border-gray-800 rounded-lg focus:outline-none focus:border-accent text-white"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full py-4 bg-accent text-black font-bold rounded-lg hover:bg-accent-hover transition-colors">Send
+                        Message</button>
                 </form>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Alwyn Roy. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="https://linkedin.com/in/alwyn-roy" target="_blank">LinkedIn</a>
-                <a href="#">GitHub</a>
-                <a href="resume.pdf">Resume</a>
-            </div>
-        </div>
+    <footer class="py-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+        <p>&copy; 2026 Alwyn Roy. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
