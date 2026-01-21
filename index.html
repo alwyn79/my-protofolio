@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alwyn Roy | Cloud Architect & FinOps Specialist</title>
+    <meta name="description"
+        content="Portfolio of Alwyn Roy, an AWS Certified Solutions Architect and FinOps Specialist helping teams optimize cloud costs and infrastructure.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Placeholder for FontAwesome, might need a real kit or CDN if this fails, using SVG icons fallback in CSS/HTML if needed -->
+    <!-- Using a reliable CDN for icons if the kit doesn't work -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">Alwyn<span class="highlight">Roy</span><span class="dot">.</span></a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <a href="resume.pdf" class="btn btn-primary nav-btn" target="_blank">Resume <i
+                        class="fas fa-arrow-down"></i></a>
+            </nav>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="hero-label">AWS Certified Solutions Architect – Associate</span>
+                    <h1 class="hero-title">FinOps & Cloud <span class="gradient-text">DevOps Engineer</span></h1>
+                    <p class="hero-subtitle">Based in Kochi, Kerala. I design scalable AWS infrastructure and implement
+                        FinOps strategies that drove a 15% reduction in monthly cloud expenditure.</p>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-outline">Let's Talk</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-desc">Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15%</span>
+                            <span class="stat-desc">Cost Reduction</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">70%</span>
+                            <span class="stat-desc">Effort Saved</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <!-- Geometric Abstract Shape representing Cloud/Structure -->
+                    <div class="abstract-shape"></div>
+                    <div class="code-badge">
+                        <div class="code-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <pre><code>
+<span class="keyword">module</span> <span class="string">"finops_automation"</span> {
+  <span class="attr">source</span> = <span class="string">"./modules/cost-anomaly"</span>
+  
+  <span class="comment"># 15% Savings Achieved</span>
+  <span class="attr">budget_alert</span>   = <span class="boolean">true</span>
+  <span class="attr">auto_cleanup</span>   = <span class="boolean">true</span>
+  <span class="attr">tooling</span>        = [<span class="string">"CloudHealth"</span>]
+}
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section about">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Software Engineer (Cloud DevOps) at <strong>Abilytics Consulting Pvt
+                            Ltd</strong></p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Hi, I’m <strong>Alwyn Roy</strong>, a Cloud DevOps Engineer with over 3 years of hands-on
+                            experience designing, automating, and operating scalable AWS infrastructure.</p>
+                        <p>Currently working at <strong>Abilytics Consulting</strong>, I specialize in bridging the gap
+                            between engineering and finance. I have spearheaded FinOps initiatives using tools like
+                            <strong>CloudHealth</strong> and <strong>CloudAbility</strong>, and implemented resource
+                            tagging strategies that identified idle infrastructure for decommissioning.</p>
+                        <p>My technical foundation is built on a <strong>Master's in Computer Science</strong> (M.Sc.)
+                            and deep expertise in IaC (Terraform), CI/CD (Jenkins, GitHub Actions), and Containerization
+                            (Docker, ECS).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="section skills">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Technical Expertise</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="fab fa-aws"></i></div>
+                        <h3>Cloud & FinOps</h3>
+                        <p>AWS (EC2, S3, RDS, ECS, Lambda), CloudHealth, CloudAbility, AWS Cost Explorer, CUR, Savings
+                            Plans</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="fas fa-code-branch"></i></div>
+                        <h3>DevOps & CI/CD</h3>
+                        <p>Jenkins, GitHub Actions, Docker, Kubernetes, Git, Maven, SonarQube</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="fas fa-server"></i></div>
+                        <h3>Infrastructure as Code</h3>
+                        <p>Terraform (Modular architecture), CloudFormation, Ansible, Packer</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="fab fa-python"></i></div>
+                        <h3>Scripting & Monitoring</h3>
+                        <p>Python (Boto3), Shell Scripting, Node.js, CloudWatch, EventBridge, SNS</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="section projects">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Key Projects</h2>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>End-to-End CI/CD Automation</h3>
+                            <p>Designed Jenkins pipelines automating Docker builds and ECS deployments. Reduced manual
+                                deployment effort by <strong>~70%</strong> and improved release consistency.</p>
+                            <div class="tags">
+                                <span>Jenkins</span>
+                                <span>Docker</span>
+                                <span>AWS ECS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>FinOps Cost Optimization</h3>
+                            <p>Implemented rightsizing and cleanup scripts for unattached EBS volumes. Achieved a
+                                <strong>15% reduction</strong> in monthly cloud expenditure.</p>
+                            <div class="tags">
+                                <span>Python</span>
+                                <span>Lambda</span>
+                                <span>Cost Explorer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>IaC with Terraform</h3>
+                            <p>Provisioned multi-account environments (VPC, RDS, EC2). Cut environment provisioning time
+                                from <strong>hours to minutes</strong> using modular templates.</p>
+                            <div class="tags">
+                                <span>Terraform</span>
+                                <span>AWS Organizations</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Serverless Cost Monitoring</h3>
+                            <p>Built a solution using AWS Lambda and EventBridge to schedule cost checks and trigger
+                                email alerts for budget anomalies.</p>
+                            <div class="tags">
+                                <span>Serverless</span>
+                                <span>EventBridge</span>
+                                <span>SNS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION & CERTIFICATIONS -->
+        <section id="education" class="section education">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Education & Certifications</h2>
+                </div>
+                <div class="education-grid">
+                    <div class="edu-card">
+                        <h3><i class="fas fa-graduation-cap"></i> M.Sc. Computer Science</h3>
+                        <span class="edu-year">2020 - 2022</span>
+                        <p>St. Berchmans College Autonomous, Changanassery</p>
+                    </div>
+                    <div class="edu-card">
+                        <h3><i class="fas fa-graduation-cap"></i> B.Sc. Computer Science</h3>
+                        <span class="edu-year">2017 - 2020</span>
+                        <p>College of Applied Science, Kattappana</p>
+                    </div>
+                    <div class="edu-card cert-card">
+                        <h3><i class="fas fa-certificate"></i> AWS Certified</h3>
+                        <span class="edu-year">Solutions Architect – Associate</span>
+                        <p>Validated expertise in designing distributed systems on AWS.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="section services">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Services</h2>
+                </div>
+                <div class="services-list">
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-cloud"></i></div>
+                        <div class="service-info">
+                            <h3>Cloud Architecture</h3>
+                            <p>Designing secure, multi-account AWS environments using AWS Organizations and Landing
+                                Zones.</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-coins"></i></div>
+                        <div class="service-info">
+                            <h3>FinOps & Cost Governance</h3>
+                            <p>Implementing tagging strategies, budgeting, and anomaly detection to control cloud spend.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-infinity"></i></div>
+                        <div class="service-info">
+                            <h3>DevOps Automation</h3>
+                            <p>Building robust CI/CD pipelines (Jenkins/GitHub Actions) for zero-downtime deployments.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h2>Get In Touch</h2>
+                        <p>I am available for freelance projects and full-time opportunities. Based in Kochi, India,
+                            working remotely worldwide.</p>
+                        <div class="contact-details">
+                            <div class="contact-detail-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>alwynroy79@gmail.com</span>
+                            </div>
+                            <div class="contact-detail-item">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>+91 9072093079</span>
+                            </div>
+                            <div class="contact-detail-item">
+                                <i class="fab fa-linkedin"></i>
+                                <span>linkedin.com/in/alwyn-roy</span>
+                            </div>
+                            <div class="contact-detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Kochi, Kerala, India</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form" action="mailto:alwynroy79@gmail.com" method="POST" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required
+                                placeholder="Project details..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Alwyn Roy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
