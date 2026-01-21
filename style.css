@@ -304,6 +304,8 @@ ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
+    perspective: 1000px;
+    /* Essential for 3D effect */
 }
 
 .project-card {
@@ -311,11 +313,17 @@ ul {
     border-radius: 12px;
     border: 1px solid var(--border-color);
     overflow: hidden;
-    transition: transform 0.3s;
+    /* Note: overflow:hidden clips 3d children sometimes, but usually ok for this effect unless popping out */
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+    /* Fast transform for mouse movements, smooth shadow */
+    transform-style: preserve-3d;
+    position: relative;
+    /* Removed default hover transform to let JS handle it */
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
+/* We will control the transform via inline styles in JS, but we can add a class for the 'active' 3d state's shadow */
+.project-card.tilt-active {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     border-color: var(--accent-color);
 }
 
