@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
     const hamburgerBtn = document.querySelector('.hamburger-btn');
     const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    const navLinks = document.querySelectorAll('.nav-menu a, nav a');
 
     if (hamburgerBtn && navMenu) {
         hamburgerBtn.addEventListener('click', () => {
@@ -57,23 +57,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const clientYWithin = y - rect.top;
 
             // Calculate rotation percentages
-            // Range: -10deg to 10deg
+            // Range: -5deg to 5deg (Subtler, more corporate)
 
-            // RotateX (up/down tilt): 
+            // RotateX (up/down tilt):
             // Cursor at Top (y < mid) -> Tilt Back (Positive RotateX)
             // Cursor at Bottom (y > mid) -> Tilt Forward (Negative RotateX)
-            const rotateX = ((yMid - clientYWithin) / yMid) * 10;
+            const rotateX = ((yMid - clientYWithin) / yMid) * 5;
 
             // RotateY (left/right tilt):
             // Cursor at Left (x < mid) -> Tilt Left (Negative RotateY)
             // Cursor at Right (x > mid) -> Tilt Right (Positive RotateY)
-            const rotateY = ((clientXWithin - xMid) / xMid) * 10;
+            const rotateY = ((clientXWithin - xMid) / xMid) * 5;
 
             // Apply styles using inline transform (overrides Tailwind's transform classes momentarily)
             card.style.transform = `
                 perspective(1000px)
-                rotateX(${rotateX}deg) 
-                rotateY(${rotateY}deg) 
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
                 scale3d(1.02, 1.02, 1.02)
             `;
 
@@ -165,8 +165,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('section').forEach(section => {
-        section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
-        observer.observe(section);
+    // ---------------------------------------------------------
+    // Active Section Highlight Logic
+    // ---------------------------------------------------------
+    const sections = document.querySelectorAll('section');
+    // navLinks is already defined at the top
+
+
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+        let current = '';
+
+        // Determine which section is currently in view
+        sections.forEach(sec => {
+            const sectionTop = sec.offsetTop;
+            const sectionHeight = sec.clientHeight;
+            // -100 offset for the fixed header
+            if (pageYOffset >= sectionTop - 150) {
+                current = sec.getAttribute('id');
+            }
+        });
+
+        // Update active class on nav links
+        navLinks.forEach(a => {
+            // Remove active style (using Tailwind text color change)
+            a.classList.remove('text-white', 'font-bold');
+            a.classList.add('text-muted');
+
+            // Check if link href matches current section
+            if (a.getAttribute('href') === '#' + current) {
+                a.classList.remove('text-muted');
+                a.classList.add('text-white', 'font-bold');
+            }
+        });
     });
 });

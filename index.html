@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alwyn Roy | Cloud DevOps & FinOps Engineer</title>
     <meta name="description"
-        content="Portfolio of Alwyn Roy - Cloud DevOps & FinOps Engineer specializing in AWS, automation, and cost optimization.">
+        content="Alwyn Roy - Cloud DevOps & FinOps Engineer. Delivering 15% cloud cost reduction and robust automation strategies.">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,232 +26,263 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        bg: '#0a0f1c',
-                        card: '#111827',
-                        accent: '#38bdf8',
-                        'accent-hover': '#0ea5e9',
+                        bg: '#0f172a', /* Slate 900 - Professional Dark */
+                        card: '#1e293b', /* Slate 800 */
+                        text: '#f8fafc', /* Slate 50 */
+                        muted: '#94a3b8', /* Slate 400 */
+                        accent: '#0ea5e9', /* Sky 500 - Trustworthy Blue */
+                        'accent-dark': '#0284c7', /* Sky 600 */
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom styles that act as overrides or specific animations */
-        body {
-            background-color: #0a0f1c;
-            /* Fallback */
-        }
-
-        /* 3D Tilt Specifics */
+        /* 3D Card Setup */
         .project-card {
             transform-style: preserve-3d;
             will-change: transform;
-            transition: transform 0.1s ease-out;
-            /* Smooth follow */
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
         }
 
-        /* Perspective container is handled in grid utility or inline */
-
-        .tilt-active {
-            /* Shadow handled by JS or utility, but here for reference */
-        }
-
-        /* Timeline Dot Customization */
-        .timeline-dot {
-            box-shadow: 0 0 0 4px #0a0f1c;
-        }
-
-        /* Mobile Menu Animation */
+        /* Mobile Menu */
         .nav-menu {
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+        }
+
+        /* Subtle Fade In */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Blinging/Glow Effect for Buttons */
+        @keyframes glowing {
+            0% {
+                box-shadow: 0 0 5px #0ea5e9;
+            }
+
+            50% {
+                box-shadow: 0 0 20px #0ea5e9, 0 0 10px #38bdf8;
+            }
+
+            100% {
+                box-shadow: 0 0 5px #0ea5e9;
+            }
+        }
+
+        .btn-glow {
+            animation: glowing 2s infinite ease-in-out;
         }
     </style>
 </head>
 
-<body class="bg-bg text-white font-sans antialiased overflow-x-hidden">
+<body class="bg-bg text-text font-sans antialiased overflow-x-hidden selection:bg-accent selection:text-white">
 
     <!-- Header -->
-    <header class="fixed w-full top-0 z-50 bg-[#0a0f1c]/95 backdrop-blur-md border-b border-gray-800">
+    <header class="fixed w-full top-0 z-50 bg-bg/90 backdrop-blur-sm border-b border-white/5">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-tight hover:text-accent transition-colors">Alwyn <span
-                    class="text-accent">Roy</span></a>
+            <a href="#" class="text-xl font-bold tracking-tight text-white hover:text-accent transition-colors">Alwyn
+                Roy</a>
 
             <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center gap-8">
-                <a href="#about" class="text-gray-400 hover:text-accent text-sm font-medium transition-colors">About</a>
-                <a href="#skills"
-                    class="text-gray-400 hover:text-accent text-sm font-medium transition-colors">Skills</a>
+                <a href="#about" class="text-sm font-medium text-muted hover:text-white transition-colors">About</a>
                 <a href="#experience"
-                    class="text-gray-400 hover:text-accent text-sm font-medium transition-colors">Experience</a>
+                    class="text-sm font-medium text-muted hover:text-white transition-colors">Experience</a>
                 <a href="#projects"
-                    class="text-gray-400 hover:text-accent text-sm font-medium transition-colors">Projects</a>
-                <a href="#contact"
-                    class="text-gray-400 hover:text-accent text-sm font-medium transition-colors">Contact</a>
+                    class="text-sm font-medium text-muted hover:text-white transition-colors">Projects</a>
+                <a href="#contact" class="text-sm font-medium text-muted hover:text-white transition-colors">Contact</a>
                 <a href="resume.pdf" target="_blank"
-                    class="px-5 py-2 bg-accent text-black font-semibold rounded-lg hover:bg-accent-hover transition-colors">View
+                    class="px-4 py-2 bg-accent text-white text-sm font-semibold rounded hover:bg-accent-dark transition-colors shadow-sm">Download
                     Resume</a>
             </nav>
 
             <!-- Mobile Hamburger -->
-            <button class="md:hidden text-2xl text-white focus:outline-none hamburger-btn">
-                <i class="fas fa-bars"></i>
+            <button class="md:hidden text-white focus:outline-none hamburger-btn p-2">
+                <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
 
         <!-- Mobile Nav Menu -->
         <div
-            class="nav-menu md:hidden absolute top-full left-0 w-full bg-card border-b border-gray-800 p-6 flex flex-col gap-4 opacity-0 -translate-y-5 pointer-events-none">
-            <a href="#about" class="text-gray-300 hover:text-accent">About</a>
-            <a href="#skills" class="text-gray-300 hover:text-accent">Skills</a>
-            <a href="#experience" class="text-gray-300 hover:text-accent">Experience</a>
-            <a href="#projects" class="text-gray-300 hover:text-accent">Projects</a>
-            <a href="#contact" class="text-gray-300 hover:text-accent">Contact</a>
-            <a href="resume.pdf" target="_blank" class="text-accent font-semibold">View Resume</a>
+            class="nav-menu md:hidden absolute top-full left-0 w-full bg-card border-b border-white/10 p-6 flex flex-col gap-4 opacity-0 -translate-y-5 pointer-events-none shadow-xl">
+            <a href="#about" class="text-muted hover:text-white">About</a>
+            <a href="#experience" class="text-muted hover:text-white">Experience</a>
+            <a href="#projects" class="text-muted hover:text-white">Projects</a>
+            <a href="#contact" class="text-muted hover:text-white">Contact</a>
+            <a href="resume.pdf" target="_blank" class="text-accent font-semibold">Download Resume</a>
         </div>
     </header>
 
     <main class="pt-24">
         <!-- HERO SECTION -->
-        <section id="hero" class="min-h-[85vh] flex items-center justify-center relative px-6">
-            <div class="max-w-4xl w-full">
+        <section id="hero"
+            class="min-h-[80vh] flex items-center justify-center px-6 border-b border-white/5 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-800/50 via-bg to-bg">
+            <div class="max-w-4xl w-full text-center md:text-left fade-in">
                 <span
-                    class="inline-block py-1 px-3 rounded-full bg-accent/10 text-accent text-sm font-semibold tracking-wide mb-6">Cloud
+                    class="inline-block py-1.5 px-3 rounded bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider mb-6 border border-accent/20">Cloud
                     DevOps & FinOps Engineer</span>
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
-                    I design, automate, and <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-600">optimize
-                        cloud</span> infrastructure.
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 text-white">
+                    Automate Everything. <br class="hidden md:block" /> <span class="text-accent">Monitor
+                        Everything.</span>
                 </h1>
-                <p class="text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
-                    Based in Kochi. I help organizations reduce cloud costs by up to 15% whilst improving reliability
-                    through robust automation and FinOps strategies.
+                <p class="text-lg text-muted max-w-2xl mb-10 leading-relaxed md:ml-0 mx-auto">
+                    Building resilient, self-healing cloud infrastructure. I replace manual toil with code and ensure
+                    reliability through observability.
                 </p>
-                <div class="flex flex-wrap gap-4">
+                <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
                     <a href="resume.pdf" target="_blank"
-                        class="px-8 py-3 bg-accent text-black font-semibold rounded-lg hover:scale-105 transition-transform">View
+                        class="px-8 py-3 bg-accent text-white font-semibold rounded hover:bg-accent-dark transition-all shadow-lg shadow-accent/20 text-center btn-glow scale-100 hover:scale-105">Download
                         Resume</a>
                     <a href="#contact"
-                        class="px-8 py-3 border border-gray-600 text-white font-semibold rounded-lg hover:border-accent hover:text-accent transition-colors">Contact
+                        class="px-8 py-3 bg-white/5 border border-white/10 text-white font-semibold rounded hover:bg-white/10 hover:border-accent/50 hover:shadow-[0_0_15px_rgba(14,165,233,0.3)] transition-all text-center">Contact
                         Me</a>
                 </div>
-            </div>
-
-            <!-- Background Glow -->
-            <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] -z-10">
             </div>
         </section>
 
         <!-- ABOUT SECTION -->
-        <section id="about" class="py-24 px-6 bg-card/30">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-3xl font-bold mb-12 border-l-4 border-accent pl-4">About Me</h2>
-                <div class="space-y-6 text-lg text-gray-400 leading-relaxed">
-                    <p>
-                        I am a <strong class="text-white">Cloud DevOps Engineer</strong> with over 3.6 years of hands-on
-                        experience designing and managing scalable AWS environments.
-                    </p>
-                    <p>
-                        My core focus is on bridging the gap between engineering and finance (FinOps). I specialize in
-                        using automation to <strong class="text-white">optimize cloud costs</strong>, improve system
-                        reliability, and streamline deployment pipelines.
-                    </p>
-                    <p>
-                        Whether it's right-sizing infrastructure or building robust CI/CD workflows, I am driven by the
-                        goal of creating efficient, cost-effective cloud solutions.
-                    </p>
+        <section id="about" class="py-20 px-6 border-b border-white/5">
+            <div class="container mx-auto max-w-6xl">
+                <!-- Profile Summary -->
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-white mb-6">Professional Profile</h2>
+                    <div class="space-y-4 text-muted leading-relaxed text-lg">
+                        <p>
+                            I am a results-driven <strong>Cloud DevOps Engineer</strong> with 3.6+ years of experience
+                            optimizing AWS environments. Currently at <strong>Abilytics Consulting</strong>, I bridge
+                            the gap between engineering and finance.
+                        </p>
+                        <p>
+                            My expertise lies in dismantling silos between development and operations while enforcing
+                            strict cost governance. I have successfully led initiatives that slashed monthly cloud bills
+                            by <strong>15%</strong> and reduced deployment friction by <strong>70%</strong>.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- SKILLS SECTION -->
-        <section id="skills" class="py-24 px-6">
+        <section id="skills" class="py-20 px-6 border-b border-white/5 bg-card/10">
             <div class="container mx-auto max-w-6xl">
-                <h2 class="text-3xl font-bold mb-12 border-l-4 border-accent pl-4">Technical Skills</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Group 1 -->
+                <!-- Core Competencies Grid -->
+                <h3 class="text-2xl font-bold text-white mb-12 text-center">Core Competencies</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+
+                    <!-- Card 1: Cloud & FinOps -->
                     <div
-                        class="bg-card p-8 rounded-2xl border border-gray-800 hover:border-accent/50 transition-colors">
-                        <div class="flex items-center gap-3 mb-6">
-                            <i class="fas fa-cloud text-2xl text-accent"></i>
-                            <h3 class="text-xl font-bold">Cloud & Infrastructure</h3>
+                        class="bg-card p-6 rounded-xl border border-white/5 shadow-lg hover:border-accent/50 transition-colors">
+                        <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-cloud text-accent text-xl"></i>
                         </div>
-                        <ul class="space-y-3 text-gray-400">
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> AWS
-                                (EC2, S3, RDS, Lambda)</li>
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> Google
-                                Cloud Platform (GCP)</li>
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> IAM &
-                                Security Groups</li>
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span>
-                                CloudFront & VPC</li>
+                        <h4 class="text-lg font-bold text-white mb-4">Cloud & FinOps</h4>
+                        <ul class="space-y-2 text-muted text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-1">●</span> AWS (EC2, S3, RDS, Lambda, CloudFront)
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-1">●</span> GCP
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-1">●</span> Cost Explorer, Budgets
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-1">●</span> CloudHealth / CloudAbility
+                            </li>
                         </ul>
                     </div>
 
-                    <!-- Group 2 -->
+                    <!-- Card 2: DevOps & Tooling -->
                     <div
-                        class="bg-card p-8 rounded-2xl border border-gray-800 hover:border-accent/50 transition-colors">
-                        <div class="flex items-center gap-3 mb-6">
-                            <i class="fas fa-cogs text-2xl text-accent"></i>
-                            <h3 class="text-xl font-bold">DevOps & Automation</h3>
+                        class="bg-card p-6 rounded-xl border border-white/5 shadow-lg hover:border-accent/50 transition-colors">
+                        <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-tools text-accent text-xl"></i>
                         </div>
-                        <ul class="space-y-3 text-gray-400">
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span>
-                                Terraform (IaC)</li>
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> Docker
-                                & ECS</li>
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> Jenkins
-                                & GitHub Actions</li>
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> CI/CD
-                                Pipelines</li>
+                        <h4 class="text-lg font-bold text-white mb-4">DevOps & Tooling</h4>
+                        <ul class="space-y-2 text-muted text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-1">●</span> Terraform (IaC)
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-1">●</span> Docker, ECS
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-1">●</span> Jenkins, GitHub Actions
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-1">●</span> CI/CD Automation
+                            </li>
                         </ul>
                     </div>
 
-                    <!-- Group 3 -->
+                    <!-- Card 3: Programming & Scripting -->
                     <div
-                        class="bg-card p-8 rounded-2xl border border-gray-800 hover:border-accent/50 transition-colors">
-                        <div class="flex items-center gap-3 mb-6">
-                            <i class="fas fa-chart-line text-2xl text-accent"></i>
-                            <h3 class="text-xl font-bold">Monitoring & FinOps</h3>
+                        class="bg-card p-6 rounded-xl border border-white/5 shadow-lg hover:border-accent/50 transition-colors">
+                        <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-code text-accent text-xl"></i>
                         </div>
-                        <ul class="space-y-3 text-gray-400">
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> AWS
-                                Cost Explorer</li>
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span>
-                                CloudWatch</li>
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span>
-                                CloudHealth & CloudAbility</li>
-                            <li class="flex items-start gap-2"><span class="text-accent mt-1.5 text-xs">●</span> Budgets
-                                & Anomaly Detection</li>
+                        <h4 class="text-lg font-bold text-white mb-4">Programming & Scripting</h4>
+                        <ul class="space-y-2 text-muted text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-1">●</span> Python (Boto3 automation)
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-1">●</span> Node.js (APIs, automation)
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-1">●</span> Bash / Shell Scripting
+                            </li>
                         </ul>
                     </div>
+
                 </div>
             </div>
         </section>
 
         <!-- EXPERIENCE SECTION -->
-        <section id="experience" class="py-24 px-6 bg-card/30">
+        <section id="experience" class="py-20 px-6 border-b border-white/5 bg-card/20">
             <div class="container mx-auto max-w-4xl">
-                <h2 class="text-3xl font-bold mb-12 border-l-4 border-accent pl-4">Experience</h2>
-                <div class="relative border-l-2 border-gray-800 ml-3 pl-8 space-y-12">
-                    <!-- Job 1 -->
+                <h2 class="text-3xl font-bold text-white mb-12 text-center">Professional Experience</h2>
+                <div class="relative border-l border-white/10 ml-6 pl-8 space-y-12">
+
+                    <!-- Role 1 -->
                     <div class="relative">
                         <div
-                            class="timeline-dot absolute -left-[41px] top-1.5 w-5 h-5 bg-accent rounded-full border-4 border-bg">
+                            class="absolute -left-[41px] top-1.5 w-5 h-5 bg-accent rounded-full border-4 border-bg shadow-[0_0_0_1px_rgba(255,255,255,0.1)]">
                         </div>
-                        <span class="text-accent font-medium text-sm mb-1 block">August 2022 - Present</span>
-                        <h3 class="text-2xl font-bold text-white mb-1">Software Engineer (Cloud DevOps)</h3>
-                        <h4 class="text-gray-400 text-lg mb-4">Abilytics Consulting Pvt Ltd</h4>
-                        <ul class="space-y-3 text-gray-400 list-disc ml-4">
-                            <li><strong class="text-white">Cost Reduction:</strong> Achieved a ~15% reduction in monthly
-                                cloud expenditure through rightsizing and automated cleanup.</li>
-                            <li><strong class="text-white">FinOps Governance:</strong> Spearheaded initiatives using
-                                CloudHealth/CloudAbility and implemented strong tagging strategies.</li>
-                            <li><strong class="text-white">IaC Adoption:</strong> Automating critical infrastructure
-                                provisioning (EC2, RDS, VPC) using Terraform, reducing setup time from hours to minutes.
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Software Engineer (Cloud DevOps)</h3>
+                                <h4 class="text-accent text-sm font-medium">Abilytics Consulting Pvt Ltd</h4>
+                            </div>
+                            <span class="text-muted text-sm mt-1 sm:mt-0 font-mono">Aug 2022 - Present</span>
+                        </div>
+                        <ul class="space-y-3 text-muted">
+                            <li class="pl-4 border-l-2 border-white/5 hover:border-accent/50 transition-colors">
+                                <strong class="text-white block mb-1">Cost Optimization Engine</strong>
+                                Rightsized infrastructure and automated resource cleanup, achieving a verified
+                                <strong>15% reduction</strong> in monthly OpEx.
                             </li>
-                            <li><strong class="text-white">CI/CD:</strong> Built Jenkins/GitHub Actions pipelines to
-                                automate build and deployment for containerized applications (Docker/ECS).</li>
+                            <li class="pl-4 border-l-2 border-white/5 hover:border-accent/50 transition-colors">
+                                <strong class="text-white block mb-1">Infrastructure as Code (IaC)</strong>
+                                Migrated manual provisioning to <strong>Terraform</strong> modules, reducing environment
+                                spin-up time from hours to minutes.
+                            </li>
+                            <li class="pl-4 border-l-2 border-white/5 hover:border-accent/50 transition-colors">
+                                <strong class="text-white block mb-1">CI/CD Pipeline Modernization</strong>
+                                Architected Jenkins and GitHub Actions workflows for Docker/ECS, reducing manual errors
+                                and cutting deployment effort by <strong>70%</strong>.
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -261,125 +292,131 @@
         <!-- PROJECTS SECTION (3D CARDS) -->
         <section id="projects" class="py-24 px-6">
             <div class="container mx-auto max-w-6xl">
-                <h2 class="text-3xl font-bold mb-12 border-l-4 border-accent pl-4">Featured Projects</h2>
+                <h2 class="text-3xl font-bold text-white mb-12 text-center">Case Studies</h2>
 
                 <!-- Grid Container with Perspective -->
                 <div class="grid md:grid-cols-3 gap-8 [perspective:1000px]">
 
                     <!-- Project 1 -->
-                    <div class="project-card group relative bg-card rounded-2xl border border-gray-800 h-full flex flex-col justify-between"
-                        data-link="https://github.com/alwyn-roy">
+                    <div class="project-card group relative bg-card rounded border border-white/5 h-full flex flex-col justify-between hover:border-accent/50 selection:bg-none"
+                        data-link="https://github.com/alwyn79">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-6 text-white group-hover:text-accent transition-colors">AWS
+                            <h3 class="text-lg font-bold mb-4 text-white group-hover:text-accent transition-colors">AWS
                                 Cost Optimization System</h3>
                             <div class="space-y-4 text-sm">
                                 <div>
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Problem</span>
-                                    <p class="text-gray-300">Uncontrolled cloud costs across multiple accounts and
-                                        unused resources.</p>
+                                    <span
+                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Problem</span>
+                                    <p class="text-slate-300">Uncontrolled resource sprawl across multiple AWS accounts
+                                        leading to budget overruns.</p>
                                 </div>
                                 <div>
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Solution</span>
-                                    <p class="text-gray-300">Cron-based Python/Lambda automation to delete unattached
-                                        EBS volumes & stale snapshots.</p>
+                                    <span
+                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Solution</span>
+                                    <p class="text-slate-300">Automated Python/Lambda bot to identify and purge
+                                        unattached EBS volumes and stale snapshots.</p>
                                 </div>
-                                <div>
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Tools</span>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">Python</span>
-                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">Lambda</span>
-                                        <span
-                                            class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">CloudWatch</span>
-                                    </div>
-                                </div>
-                                <div class="pt-4 border-t border-gray-800 border-dashed">
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Result</span>
-                                    <p class="text-accent font-medium">Reduced monthly spend by ~15%.</p>
+                                <div class="pt-4 border-t border-white/5">
+                                    <span
+                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Business
+                                        Impact</span>
+                                    <p class="text-accent font-semibold">Reduced monthly cloud spend by ~15%.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-4 bg-black/20 border-t border-gray-800 text-right">
+                        <div class="p-4 bg-black/20 border-t border-white/5 flex justify-between items-center">
+                            <div class="flex gap-2">
+                                <span
+                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">Python</span>
+                                <span
+                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">Lambda</span>
+                            </div>
                             <span
-                                class="text-sm font-medium text-accent inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                View Details <i class="fas fa-arrow-right"></i>
+                                class="text-xs font-semibold text-white group-hover:text-accent flex items-center gap-1 transition-colors">
+                                View Code <i class="fab fa-github"></i>
                             </span>
                         </div>
                     </div>
 
                     <!-- Project 2 -->
-                    <div class="project-card group relative bg-card rounded-2xl border border-gray-800 h-full flex flex-col justify-between"
-                        data-link="https://github.com/alwyn-roy">
+                    <div class="project-card group relative bg-card rounded border border-white/5 h-full flex flex-col justify-between hover:border-accent/50 selection:bg-none"
+                        data-link="https://github.com/alwyn79">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-6 text-white group-hover:text-accent transition-colors">
+                            <h3 class="text-lg font-bold mb-4 text-white group-hover:text-accent transition-colors">
                                 End-to-End CI/CD Automation</h3>
                             <div class="space-y-4 text-sm">
                                 <div>
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Problem</span>
-                                    <p class="text-gray-300">Manual deployments were error-prone and time-consuming.</p>
+                                    <span
+                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Problem</span>
+                                    <p class="text-slate-300">Manual deployment processes were error-prone, requiring
+                                        distinct effort per release.</p>
                                 </div>
                                 <div>
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Solution</span>
-                                    <p class="text-gray-300">Designed Jenkins pipelines to automate Docker build, scan,
-                                        and ECS deploy.</p>
+                                    <span
+                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Solution</span>
+                                    <p class="text-slate-300">Jenkins/Docker pipeline automating build, security scan,
+                                        and ECS deployment.</p>
                                 </div>
-                                <div>
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Tools</span>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">Jenkins</span>
-                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">Docker</span>
-                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">ECS</span>
-                                    </div>
-                                </div>
-                                <div class="pt-4 border-t border-gray-800 border-dashed">
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Result</span>
-                                    <p class="text-accent font-medium">Reduced manual effort by ~70%.</p>
+                                <div class="pt-4 border-t border-white/5">
+                                    <span
+                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Business
+                                        Impact</span>
+                                    <p class="text-accent font-semibold">Saved 70% of engineering time per release.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-4 bg-black/20 border-t border-gray-800 text-right">
+                        <div class="p-4 bg-black/20 border-t border-white/5 flex justify-between items-center">
+                            <div class="flex gap-2">
+                                <span
+                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">Jenkins</span>
+                                <span
+                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">Docker</span>
+                            </div>
                             <span
-                                class="text-sm font-medium text-accent inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                View Details <i class="fas fa-arrow-right"></i>
+                                class="text-xs font-semibold text-white group-hover:text-accent flex items-center gap-1 transition-colors">
+                                View Code <i class="fab fa-github"></i>
                             </span>
                         </div>
                     </div>
 
                     <!-- Project 3 -->
-                    <div class="project-card group relative bg-card rounded-2xl border border-gray-800 h-full flex flex-col justify-between"
-                        data-link="https://github.com/alwyn-roy">
+                    <div class="project-card group relative bg-card rounded border border-white/5 h-full flex flex-col justify-between hover:border-accent/50 selection:bg-none"
+                        data-link="https://github.com/alwyn79">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-6 text-white group-hover:text-accent transition-colors">
+                            <h3 class="text-lg font-bold mb-4 text-white group-hover:text-accent transition-colors">
                                 Serverless Cost Monitoring</h3>
                             <div class="space-y-4 text-sm">
                                 <div>
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Problem</span>
-                                    <p class="text-gray-300">Lack of visibility into daily cost spikes and anomalies.
+                                    <span
+                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Problem</span>
+                                    <p class="text-slate-300">Delayed visibility into daily cost spikes caused budget
+                                        surprises.</p>
+                                </div>
+                                <div>
+                                    <span
+                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Solution</span>
+                                    <p class="text-slate-300">EventBridge & Lambda solution to audit costs and push SNS
+                                        alerts for anomalies.</p>
+                                </div>
+                                <div class="pt-4 border-t border-white/5">
+                                    <span
+                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Business
+                                        Impact</span>
+                                    <p class="text-accent font-semibold">Enforced real-time financial accountability.
                                     </p>
-                                </div>
-                                <div>
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Solution</span>
-                                    <p class="text-gray-300">Serverless solution (Lambda + EventBridge) to schedule cost
-                                        checks & trigger alerts.</p>
-                                </div>
-                                <div>
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Tools</span>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">Lambda</span>
-                                        <span
-                                            class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">EventBridge</span>
-                                        <span class="px-2 py-1 bg-white/5 rounded text-gray-400 text-xs">SNS</span>
-                                    </div>
-                                </div>
-                                <div class="pt-4 border-t border-gray-800 border-dashed">
-                                    <span class="block text-xs uppercase text-gray-500 font-bold mb-1">Result</span>
-                                    <p class="text-accent font-medium">Early detection of unexpected spend.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-4 bg-black/20 border-t border-gray-800 text-right">
+                        <div class="p-4 bg-black/20 border-t border-white/5 flex justify-between items-center">
+                            <div class="flex gap-2">
+                                <span
+                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">Lambda</span>
+                                <span
+                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">SNS</span>
+                            </div>
                             <span
-                                class="text-sm font-medium text-accent inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                View Details <i class="fas fa-arrow-right"></i>
+                                class="text-xs font-semibold text-white group-hover:text-accent flex items-center gap-1 transition-colors">
+                                View Code <i class="fab fa-github"></i>
                             </span>
                         </div>
                     </div>
@@ -389,47 +426,43 @@
         </section>
 
         <!-- CONTACT SECTION -->
-        <section id="contact" class="py-24 px-6 bg-card/30">
-            <div class="container mx-auto max-w-2xl text-center">
-                <h2 class="text-3xl font-bold mb-8">Let's work together</h2>
-                <div class="flex flex-wrap justify-center gap-8 mb-12">
+        <section id="contact" class="py-20 px-6 border-b border-white/5 bg-card/20">
+            <div class="container mx-auto max-w-3xl text-center">
+                <h2 class="text-3xl font-bold text-white mb-6">Let's Connect</h2>
+                <p class="text-muted mb-10 text-lg">
+                    I am available for opportunities where I can leverage my Cloud & FinOps expertise.
+                </p>
+
+                <div class="flex flex-col md:flex-row justify-center gap-6 mb-12">
                     <a href="mailto:alwynroy79@gmail.com"
-                        class="flex items-center gap-2 text-gray-300 hover:text-accent transition-colors">
-                        <i class="fas fa-envelope text-xl"></i> alwynroy79@gmail.com
+                        class="group flex items-center justify-center gap-3 p-4 bg-card border border-white/10 rounded hover:border-accent transition-colors w-full md:w-auto">
+                        <div
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                            <i class="fas fa-envelope text-accent"></i>
+                        </div>
+                        <div class="text-left">
+                            <span class="block text-xs text-muted uppercase tracking-wider">Email Me</span>
+                            <span class="block text-white font-medium">alwynroy79@gmail.com</span>
+                        </div>
                     </a>
+
                     <a href="https://linkedin.com/in/alwyn-roy" target="_blank"
-                        class="flex items-center gap-2 text-gray-300 hover:text-accent transition-colors">
-                        <i class="fab fa-linkedin text-xl"></i> LinkedIn
-                    </a>
-                    <a href="https://github.com/alwyn-roy" target="_blank"
-                        class="flex items-center gap-2 text-gray-300 hover:text-accent transition-colors">
-                        <i class="fab fa-github text-xl"></i> GitHub
+                        class="group flex items-center justify-center gap-3 p-4 bg-card border border-white/10 rounded hover:border-accent transition-colors w-full md:w-auto">
+                        <div
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                            <i class="fab fa-linkedin text-accent"></i>
+                        </div>
+                        <div class="text-left">
+                            <span class="block text-xs text-muted uppercase tracking-wider">LinkedIn</span>
+                            <span class="block text-white font-medium">alwyn-roy</span>
+                        </div>
                     </a>
                 </div>
-
-                <form class="space-y-4 text-left" action="mailto:alwynroy79@gmail.com" method="POST"
-                    enctype="text/plain">
-                    <div>
-                        <input type="text" name="name" placeholder="Your Name" required
-                            class="w-full p-4 bg-card border border-gray-800 rounded-lg focus:outline-none focus:border-accent text-white">
-                    </div>
-                    <div>
-                        <input type="email" name="email" placeholder="Your Email" required
-                            class="w-full p-4 bg-card border border-gray-800 rounded-lg focus:outline-none focus:border-accent text-white">
-                    </div>
-                    <div>
-                        <textarea name="message" rows="4" placeholder="Your Message" required
-                            class="w-full p-4 bg-card border border-gray-800 rounded-lg focus:outline-none focus:border-accent text-white"></textarea>
-                    </div>
-                    <button type="submit"
-                        class="w-full py-4 bg-accent text-black font-bold rounded-lg hover:bg-accent-hover transition-colors">Send
-                        Message</button>
-                </form>
             </div>
         </section>
     </main>
 
-    <footer class="py-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+    <footer class="py-8 bg-black/20 text-center text-muted text-xs uppercase tracking-wide">
         <p>&copy; 2026 Alwyn Roy. All rights reserved.</p>
     </footer>
 
