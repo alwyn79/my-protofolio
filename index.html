@@ -1,472 +1,1268 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alwyn Roy | Cloud DevOps & FinOps Engineer</title>
-    <meta name="description"
-        content="Alwyn Roy - Cloud DevOps & FinOps Engineer. Delivering 15% cloud cost reduction and robust automation strategies.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Alwyn Roy — DevOps Engineer specializing in AWS, Kubernetes, GitOps & FinOps. 3+ years building resilient cloud infrastructure." />
+  <title>Alwyn Roy | DevOps Engineer</title>
 
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        bg: '#0f172a', /* Slate 900 - Professional Dark */
-                        card: '#1e293b', /* Slate 800 */
-                        text: '#f8fafc', /* Slate 50 */
-                        muted: '#94a3b8', /* Slate 400 */
-                        accent: '#0ea5e9', /* Sky 500 - Trustworthy Blue */
-                        'accent-dark': '#0284c7', /* Sky 600 */
-                    }
-                }
-            }
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            mono:    ['JetBrains Mono', 'monospace'],
+            body:    ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            bg:       '#060a0f',
+            surface:  '#0b1017',
+            surface2: '#111820',
+            border:   'rgba(255,255,255,0.07)',
+            accent:   '#00e5c0',
+            blue:     '#38bdf8',
+            amber:    '#fbbf24',
+            muted:    '#4a5568',
+          },
+          animation: {
+            'fade-up':    'fadeUp 0.7s ease both',
+            'fade-in':    'fadeIn 0.5s ease both',
+            'pulse-slow': 'pulse 3s ease-in-out infinite',
+            'spin-slow':  'spin 8s linear infinite',
+            'float':      'float 6s ease-in-out infinite',
+            'glow':       'glow 2s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            fadeUp:  { from: { opacity: '0', transform: 'translateY(28px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+            fadeIn:  { from: { opacity: '0' }, to: { opacity: '1' } },
+            float:   { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-12px)' } },
+            glow:    { from: { boxShadow: '0 0 20px rgba(0,229,192,0.2)' }, to: { boxShadow: '0 0 40px rgba(0,229,192,0.5)' } },
+          },
+          backgroundImage: {
+            'grid-pattern': "linear-gradient(rgba(0,229,192,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,192,0.03) 1px, transparent 1px)",
+          },
+          backgroundSize: {
+            'grid': '56px 56px',
+          }
         }
-    </script>
-    <style>
-        /* 3D Card Setup */
-        .project-card {
-            transform-style: preserve-3d;
-            will-change: transform;
-            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
-        }
+      }
+    }
+  </script>
 
-        /* Mobile Menu */
-        .nav-menu {
-            transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
-        }
+  <!-- Custom CSS -->
+  <style>
+/* ── NOISE OVERLAY ── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
 
-        /* Subtle Fade In */
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(10px);
-        }
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #060a0f; }
+::-webkit-scrollbar-thumb { background: #00e5c0; border-radius: 2px; }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* ── NAVBAR ── */
+#navbar.scrolled {
+  background: rgba(6, 10, 15, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
 
-        /* Blinging/Glow Effect for Buttons */
-        @keyframes glowing {
-            0% {
-                box-shadow: 0 0 5px #0ea5e9;
-            }
+/* ── HAMBURGER ── */
+.hamburger-icon { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger-icon span { display: block; width: 22px; height: 1.5px; background: white; transition: all 0.3s; }
+.hamburger-icon.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger-icon.open span:nth-child(2) { opacity: 0; }
+.hamburger-icon.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-            50% {
-                box-shadow: 0 0 20px #0ea5e9, 0 0 10px #38bdf8;
-            }
+/* ── HERO ORBS ── */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+}
+.hero-orb-1 {
+  top: -10%; left: 5%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,229,192,0.07) 0%, transparent 70%);
+  animation: float 8s ease-in-out infinite;
+}
+.hero-orb-2 {
+  top: 40%; right: -8%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(56,189,248,0.06) 0%, transparent 70%);
+  animation: float 10s ease-in-out infinite reverse;
+}
+.hero-orb-3 {
+  bottom: 0; left: 40%;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(251,191,36,0.04) 0%, transparent 70%);
+  animation: float 12s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-20px); }
+}
 
-            100% {
-                box-shadow: 0 0 5px #0ea5e9;
-            }
-        }
+/* ── METRIC CARD hover ── */
+.metric-card {
+  transition: background 0.2s;
+}
+.metric-card:hover { background: rgba(0,229,192,0.03); }
 
-        .btn-glow {
-            animation: glowing 2s infinite ease-in-out;
-        }
-    </style>
+/* ── SECTION HELPERS ── */
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #00e5c0;
+  margin-bottom: 0.75rem;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: #00e5c0;
+  flex-shrink: 0;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 3rem;
+}
+
+/* ── REVEAL ANIMATION ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── ABOUT CARDS ── */
+.info-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6);
+  padding: 0.35rem 0.85rem;
+  border-radius: 2px;
+}
+.about-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 1.5rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.about-card:hover {
+  background: rgba(0,229,192,0.04);
+  border-color: rgba(0,229,192,0.15);
+}
+
+/* ── SKILL GROUPS ── */
+.skill-group {
+  background: #0b1017;
+  padding: 1.75rem;
+  transition: background 0.2s;
+}
+.skill-group:hover { background: #111820; }
+.skill-group-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #00e5c0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+  padding: 0.28rem 0.65rem;
+  border-radius: 2px;
+  cursor: default;
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-block;
+}
+.skill-tag:hover {
+  border-color: rgba(0,229,192,0.4);
+  color: #00e5c0;
+}
+
+/* ── EXPERIENCE ── */
+.exp-card {
+  background: #0b1017;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.exp-accent-bar {
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, #00e5c0, #38bdf8);
+}
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.exp-period {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: #4a5568;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 0.3rem 0.8rem;
+  border-radius: 2px;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+}
+.kpi-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  border: 1px solid;
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+}
+.exp-bullet {
+  font-size: 0.9rem;
+  color: rgba(226,232,240,0.7);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.65;
+}
+.exp-bullet::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #00e5c0;
+  font-size: 0.65rem;
+  top: 0.18em;
+}
+.exp-bullet strong { color: rgba(226,232,240,0.95); }
+
+/* ── PROJECTS ── */
+.project-card-featured {
+  border: 1px solid rgba(0,229,192,0.2);
+  background: linear-gradient(135deg, rgba(0,229,192,0.04) 0%, rgba(56,189,248,0.04) 100%);
+  border-radius: 4px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+@media (max-width: 768px) {
+  .project-card-featured { grid-template-columns: 1fr; }
+}
+.project-featured-left { padding: 2.5rem; }
+.project-featured-right {
+  padding: 2rem;
+  border-left: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 768px) {
+  .project-featured-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
+}
+.featured-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fbbf24;
+  background: rgba(251,191,36,0.1);
+  border: 1px solid rgba(251,191,36,0.2);
+  padding: 0.25rem 0.65rem;
+  border-radius: 2px;
+  display: inline-block;
+}
+.arch-box {
+  background: rgba(6,10,15,0.8);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 1.5rem;
+  flex: 1;
+}
+.arch-pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  line-height: 1.9;
+  color: #4a5568;
+  white-space: pre;
+  overflow-x: auto;
+}
+.project-card {
+  background: #0b1017;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 1.75rem;
+  transition: border-color 0.25s, transform 0.25s, background 0.25s;
+}
+.project-card:hover {
+  border-color: rgba(0,229,192,0.25);
+  transform: translateY(-3px);
+  background: #111820;
+}
+.project-card-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+.ps-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4a5568;
+  margin-bottom: 0.2rem;
+}
+.impact-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.9rem;
+  background: rgba(0,229,192,0.05);
+  border: 1px solid rgba(0,229,192,0.1);
+  border-radius: 2px;
+}
+.proj-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #4a5568;
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  display: inline-block;
+}
+.proj-tag-sm {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  color: #4a5568;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* ── CONTACT ── */
+.contact-link-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.4rem;
+  background: #0b1017;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  transition: border-color 0.2s, background 0.2s;
+}
+.contact-link-card:hover {
+  border-color: rgba(0,229,192,0.3);
+  background: #111820;
+}
+.contact-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(0,229,192,0.1);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.avail-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  padding: 0.25rem 0.65rem;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* ── CURSOR GLOW ── */
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,229,192,0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: left 0.12s ease, top 0.12s ease;
+}
+
+/* ── NAV ACTIVE ── */
+.nav-link.active { color: #00e5c0 !important; }
+
+/* ── SELECTION ── */
+::selection { background: rgba(0,229,192,0.2); color: white; }
+
+  </style>
 </head>
+<body class="bg-bg text-white font-body antialiased overflow-x-hidden">
 
-<body class="bg-bg text-text font-sans antialiased overflow-x-hidden selection:bg-accent selection:text-white">
+  <!-- NOISE OVERLAY -->
+  <div class="noise-overlay"></div>
 
-    <!-- Header -->
-    <header class="fixed w-full top-0 z-50 bg-bg/90 backdrop-blur-sm border-b border-white/5">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-tight text-white hover:text-accent transition-colors">Alwyn
-                Roy</a>
+  <!-- ══════════════════════ NAV ══════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="#home" class="font-display text-lg font-800 tracking-tight">
+        Alwyn <span class="text-accent">Roy</span>
+      </a>
 
-            <!-- Desktop Nav -->
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="#about" class="text-sm font-medium text-muted hover:text-white transition-colors">About</a>
-                <a href="#experience"
-                    class="text-sm font-medium text-muted hover:text-white transition-colors">Experience</a>
-                <a href="#projects"
-                    class="text-sm font-medium text-muted hover:text-white transition-colors">Projects</a>
-                <a href="#contact" class="text-sm font-medium text-muted hover:text-white transition-colors">Contact</a>
-                <a href="resume.pdf" target="_blank"
-                    class="px-4 py-2 bg-accent text-white text-sm font-semibold rounded hover:bg-accent-dark transition-colors shadow-sm">Download
-                    Resume</a>
-            </nav>
+      <!-- Desktop Nav -->
+      <ul class="hidden md:flex items-center gap-8">
+        <li><a href="#about"      class="nav-link font-mono text-xs uppercase tracking-widest text-muted hover:text-accent transition-colors">About</a></li>
+        <li><a href="#skills"     class="nav-link font-mono text-xs uppercase tracking-widest text-muted hover:text-accent transition-colors">Skills</a></li>
+        <li><a href="#experience" class="nav-link font-mono text-xs uppercase tracking-widest text-muted hover:text-accent transition-colors">Experience</a></li>
+        <li><a href="#projects"   class="nav-link font-mono text-xs uppercase tracking-widest text-muted hover:text-accent transition-colors">Projects</a></li>
+        <li><a href="#contact"    class="nav-link font-mono text-xs uppercase tracking-widest text-muted hover:text-accent transition-colors">Contact</a></li>
+        <li>
+          <a href="resume.pdf" download
+             class="font-mono text-xs uppercase tracking-widest text-accent border border-accent/40 px-4 py-2 rounded-sm hover:bg-accent hover:text-bg transition-all duration-200">
+            Resume ↓
+          </a>
+        </li>
+      </ul>
 
-            <!-- Mobile Hamburger -->
-            <button class="md:hidden text-white focus:outline-none hamburger-btn p-2">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+      <!-- Mobile Hamburger -->
+      <button id="menu-btn" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+        <div class="hamburger-icon">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface/95 backdrop-blur-md border-t border-white/5">
+      <ul class="flex flex-col px-6 py-6 gap-5">
+        <li><a href="#about"      class="mobile-nav-link font-mono text-xs uppercase tracking-widest text-muted">About</a></li>
+        <li><a href="#skills"     class="mobile-nav-link font-mono text-xs uppercase tracking-widest text-muted">Skills</a></li>
+        <li><a href="#experience" class="mobile-nav-link font-mono text-xs uppercase tracking-widest text-muted">Experience</a></li>
+        <li><a href="#projects"   class="mobile-nav-link font-mono text-xs uppercase tracking-widest text-muted">Projects</a></li>
+        <li><a href="#contact"    class="mobile-nav-link font-mono text-xs uppercase tracking-widest text-muted">Contact</a></li>
+        <li><a href="resume.pdf" download class="font-mono text-xs uppercase tracking-widest text-accent border border-accent/30 px-4 py-2 rounded-sm inline-block">Resume ↓</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════ HERO ══════════════════════ -->
+  <section id="home" class="relative min-h-screen flex flex-col justify-center px-6 lg:px-12 pt-20 overflow-hidden">
+
+    <!-- Background grid -->
+    <div class="absolute inset-0 bg-grid-pattern bg-grid [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black_40%,transparent_100%)]"></div>
+
+    <!-- Glow orbs -->
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+
+    <div class="max-w-7xl mx-auto w-full relative z-10">
+      <!-- Eyebrow -->
+      <div class="flex items-center gap-3 mb-6 animate-fade-up" style="animation-delay:0.1s">
+        <span class="w-8 h-px bg-accent"></span>
+        <span class="font-mono text-xs text-accent uppercase tracking-[0.2em]">DevOps Engineer · AWS Certified · Kochi, India</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="font-display font-extrabold leading-[0.95] tracking-tight mb-6 animate-fade-up" style="animation-delay:0.2s; font-size: clamp(3rem, 9vw, 7rem);">
+        Automate<br>
+        <span class="text-accent">Everything.</span><br>
+        <span class="text-white/30 font-normal" style="font-size:0.45em; letter-spacing:-0.01em;">Build resilient · Scale fearlessly · Observe always</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="text-white/50 max-w-xl text-base leading-relaxed mb-8 animate-fade-up" style="animation-delay:0.3s">
+        3+ years building zero-touch CI/CD pipelines, GitOps-managed Kubernetes platforms,
+        and FinOps systems on AWS. I replace manual toil with code and ensure reliability through deep observability.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap gap-4 mb-12 animate-fade-up" style="animation-delay:0.4s">
+        <a href="#projects"
+           class="bg-accent text-bg font-mono text-xs uppercase tracking-widest px-6 py-3 rounded-sm font-medium hover:opacity-85 hover:-translate-y-0.5 transition-all duration-200">
+          View Projects
+        </a>
+        <a href="resume.pdf" download
+           class="border border-white/15 text-white font-mono text-xs uppercase tracking-widest px-6 py-3 rounded-sm hover:border-accent hover:text-accent transition-all duration-200">
+          Download Resume
+        </a>
+        <a href="#contact"
+           class="border border-white/15 text-white font-mono text-xs uppercase tracking-widest px-6 py-3 rounded-sm hover:border-accent hover:text-accent transition-all duration-200">
+          Contact Me
+        </a>
+      </div>
+
+      <!-- AWS Cert Badge -->
+      <div class="inline-flex items-center gap-4 bg-accent/5 border border-accent/20 rounded-sm px-5 py-3 mb-16 animate-fade-up" style="animation-delay:0.5s">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-lg flex-shrink-0">☁</div>
+        <div>
+          <div class="font-display font-bold text-sm">AWS Certified Solutions Architect</div>
+          <div class="font-mono text-xs text-muted uppercase tracking-wider mt-0.5">Associate · Amazon Web Services</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- METRICS BAR -->
+    <div class="relative z-10 max-w-7xl mx-auto w-full">
+      <div class="grid grid-cols-2 md:grid-cols-4 border border-white/7 divide-x divide-white/7 animate-fade-up" style="animation-delay:0.6s">
+        <div class="metric-card text-center py-8 px-4 border-b md:border-b-0 border-white/7">
+          <div class="font-display font-extrabold text-accent leading-none mb-1" style="font-size:2.6rem" data-count="15" data-suffix="%">0%</div>
+          <div class="font-mono text-xs text-muted uppercase tracking-wider">Cloud Cost Reduction</div>
+        </div>
+        <div class="metric-card text-center py-8 px-4 border-b md:border-b-0 border-white/7">
+          <div class="font-display font-extrabold text-accent leading-none mb-1" style="font-size:2.6rem" data-count="70" data-suffix="%">0%</div>
+          <div class="font-mono text-xs text-muted uppercase tracking-wider">Deployment Effort Cut</div>
+        </div>
+        <div class="metric-card text-center py-8 px-4">
+          <div class="font-display font-extrabold text-accent leading-none mb-1" style="font-size:2.6rem" data-count="40" data-suffix="%">0%</div>
+          <div class="font-mono text-xs text-muted uppercase tracking-wider">Faster Incident Detection</div>
+        </div>
+        <div class="metric-card text-center py-8 px-4">
+          <div class="font-display font-extrabold text-accent leading-none mb-1" style="font-size:2.6rem" data-count="5" data-suffix="">0</div>
+          <div class="font-mono text-xs text-muted uppercase tracking-wider">Microservices Automated</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ ABOUT ══════════════════════ -->
+  <section id="about" class="py-28 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Text -->
+        <div class="reveal">
+          <div class="section-eyebrow">Who I Am</div>
+          <h2 class="section-title">Building Infrastructure<br><span class="text-accent">That Never Sleeps</span></h2>
+          <p class="text-white/50 leading-relaxed mb-5">
+            I'm a DevOps Engineer at <strong class="text-white">Abilytics Consulting</strong> with 3+ years of hands-on experience
+            building and operating cloud infrastructure on AWS — from zero-touch CI/CD pipelines and
+            Terraform-managed environments to a full GitOps observability platform.
+          </p>
+          <p class="text-white/50 leading-relaxed mb-8">
+            My focus is eliminating manual toil through automation, enforcing cost governance through FinOps,
+            and ensuring production reliability through deep, three-signal observability
+            (metrics, logs, and distributed traces).
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span class="info-chip">📍 Kochi, Kerala, India</span>
+            <span class="info-chip">🎓 M.Sc. Computer Science</span>
+            <span class="info-chip">☁ AWS CSA – Associate</span>
+            <span class="info-chip">⚡ 3+ Years Experience</span>
+          </div>
         </div>
 
-        <!-- Mobile Nav Menu -->
-        <div
-            class="nav-menu md:hidden absolute top-full left-0 w-full bg-card border-b border-white/10 p-6 flex flex-col gap-4 opacity-0 -translate-y-5 pointer-events-none shadow-xl">
-            <a href="#about" class="text-muted hover:text-white">About</a>
-            <a href="#experience" class="text-muted hover:text-white">Experience</a>
-            <a href="#projects" class="text-muted hover:text-white">Projects</a>
-            <a href="#contact" class="text-muted hover:text-white">Contact</a>
-            <a href="resume.pdf" target="_blank" class="text-accent font-semibold">Download Resume</a>
+        <!-- Card grid -->
+        <div class="reveal grid grid-cols-2 gap-4">
+          <div class="about-card col-span-2 bg-accent/5 border-accent/20">
+            <div class="text-2xl mb-3">🔄</div>
+            <div class="font-display font-bold text-base mb-1">GitOps First</div>
+            <div class="text-white/40 text-sm">Every change tracked in Git. ArgoCD reconciles cluster state within 3 minutes — no manual kubectl ops.</div>
+          </div>
+          <div class="about-card">
+            <div class="text-2xl mb-3">💰</div>
+            <div class="font-display font-bold text-sm mb-1">FinOps Expert</div>
+            <div class="text-white/40 text-xs">15% sustained AWS cost reduction through rightsizing & governance.</div>
+          </div>
+          <div class="about-card">
+            <div class="text-2xl mb-3">📊</div>
+            <div class="font-display font-bold text-sm mb-1">Observability</div>
+            <div class="text-white/40 text-xs">Prometheus, Loki, Tempo unified under Grafana Alloy with RUM via Faro.</div>
+          </div>
+          <div class="about-card">
+            <div class="text-2xl mb-3">🏗</div>
+            <div class="font-display font-bold text-sm mb-1">IaC Everything</div>
+            <div class="text-white/40 text-xs">100% Terraform. Env spin-up: hours → under 10 min.</div>
+          </div>
+          <div class="about-card">
+            <div class="text-2xl mb-3">🛡</div>
+            <div class="font-display font-bold text-sm mb-1">Security</div>
+            <div class="text-white/40 text-xs">Zero critical findings across all internal compliance reviews.</div>
+          </div>
         </div>
-    </header>
+      </div>
+    </div>
+  </section>
 
-    <main class="pt-24">
-        <!-- HERO SECTION -->
-        <section id="hero"
-            class="min-h-[80vh] flex items-center justify-center px-6 border-b border-white/5 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-800/50 via-bg to-bg">
-            <div class="max-w-4xl w-full text-center md:text-left fade-in">
-                <span
-                    class="inline-block py-1.5 px-3 rounded bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider mb-6 border border-accent/20">Cloud
-                    DevOps & FinOps Engineer</span>
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 text-white">
-                    Automate Everything. <br class="hidden md:block" /> <span class="text-accent">Monitor
-                        Everything.</span>
-                </h1>
-                <p class="text-lg text-muted max-w-2xl mb-10 leading-relaxed md:ml-0 mx-auto">
-                    Building resilient, self-healing cloud infrastructure. I replace manual toil with code and ensure
-                    reliability through observability.
-                </p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-                    <a href="resume.pdf" target="_blank"
-                        class="px-8 py-3 bg-accent text-white font-semibold rounded hover:bg-accent-dark transition-all shadow-lg shadow-accent/20 text-center btn-glow scale-100 hover:scale-105">Download
-                        Resume</a>
-                    <a href="#contact"
-                        class="px-8 py-3 bg-white/5 border border-white/10 text-white font-semibold rounded hover:bg-white/10 hover:border-accent/50 hover:shadow-[0_0_15px_rgba(14,165,233,0.3)] transition-all text-center">Contact
-                        Me</a>
-                </div>
+  <!-- ══════════════════════ SKILLS ══════════════════════ -->
+  <section id="skills" class="py-28 px-6 lg:px-12 bg-surface">
+    <div class="max-w-7xl mx-auto">
+      <div class="section-eyebrow reveal">Technical Arsenal</div>
+      <h2 class="section-title reveal">Skills & Tools</h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5 reveal">
+
+        <div class="skill-group">
+          <div class="skill-group-title">☁ AWS & Cloud</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">EC2</span><span class="skill-tag">ECS</span><span class="skill-tag">EKS</span>
+            <span class="skill-tag">RDS</span><span class="skill-tag">S3</span><span class="skill-tag">VPC</span>
+            <span class="skill-tag">IAM</span><span class="skill-tag">Lambda</span><span class="skill-tag">ECR</span>
+            <span class="skill-tag">CloudWatch</span><span class="skill-tag">CloudTrail</span>
+            <span class="skill-tag">SNS</span><span class="skill-tag">EventBridge</span>
+            <span class="skill-tag">API Gateway</span><span class="skill-tag">Organizations</span>
+            <span class="skill-tag">Route 53</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">⚙ DevOps & CI/CD</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Jenkins</span><span class="skill-tag">GitHub Actions</span>
+            <span class="skill-tag">Docker</span><span class="skill-tag">Amazon ECR</span>
+            <span class="skill-tag">ECS Rolling</span><span class="skill-tag">Blue-Green</span>
+            <span class="skill-tag">ArgoCD</span><span class="skill-tag">Kustomize</span>
+            <span class="skill-tag">Helm</span><span class="skill-tag">GitOps</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">☸ Kubernetes</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Minikube</span><span class="skill-tag">Helm</span>
+            <span class="skill-tag">Kustomize</span><span class="skill-tag">ArgoCD</span>
+            <span class="skill-tag">App of Apps</span><span class="skill-tag">selfHeal</span>
+            <span class="skill-tag">Drift Correction</span><span class="skill-tag">RBAC</span>
+            <span class="skill-tag">ServiceMonitors</span><span class="skill-tag">ConfigMaps</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">📊 Observability</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Prometheus</span><span class="skill-tag">Grafana</span>
+            <span class="skill-tag">Loki</span><span class="skill-tag">Tempo</span>
+            <span class="skill-tag">OpenTelemetry</span><span class="skill-tag">Grafana Alloy</span>
+            <span class="skill-tag">Grafana Faro</span><span class="skill-tag">RUM</span>
+            <span class="skill-tag">PromQL</span><span class="skill-tag">CloudWatch</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">💰 IaC & FinOps</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Terraform</span><span class="skill-tag">CloudFormation</span>
+            <span class="skill-tag">Remote State</span><span class="skill-tag">DynamoDB Lock</span>
+            <span class="skill-tag">CloudHealth</span><span class="skill-tag">Cloudability</span>
+            <span class="skill-tag">Cost Explorer</span><span class="skill-tag">CUR</span>
+            <span class="skill-tag">Reserved Instances</span><span class="skill-tag">Savings Plans</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">🔐 Security</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">IAM Least-Privilege</span>
+            <span class="skill-tag">Security Groups</span>
+            <span class="skill-tag">Encryption at Rest</span>
+            <span class="skill-tag">Encryption in Transit</span>
+            <span class="skill-tag">AWS Config</span>
+            <span class="skill-tag">CloudTrail</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">🌐 Networking</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">VPC</span><span class="skill-tag">Subnets</span>
+            <span class="skill-tag">Route Tables</span><span class="skill-tag">NAT Gateway</span>
+            <span class="skill-tag">Load Balancers</span><span class="skill-tag">Route 53</span>
+            <span class="skill-tag">iptables</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">💻 OS & Scripting</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Linux (Ubuntu)</span>
+            <span class="skill-tag">Amazon Linux</span>
+            <span class="skill-tag">Bash</span><span class="skill-tag">Python</span>
+            <span class="skill-tag">Python (Boto3)</span>
+            <span class="skill-tag">Shell Automation</span>
+            <span class="skill-tag">systemd</span>
+            <span class="skill-tag">Git</span><span class="skill-tag">GitHub</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ EXPERIENCE ══════════════════════ -->
+  <section id="experience" class="py-28 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="section-eyebrow reveal">Work History</div>
+      <h2 class="section-title reveal">Professional Experience</h2>
+
+      <div class="exp-card reveal">
+        <!-- Left accent bar -->
+        <div class="exp-accent-bar"></div>
+
+        <div class="exp-header">
+          <div>
+            <h3 class="font-display font-bold text-xl tracking-tight">DevOps Engineer — Cloud & FinOps</h3>
+            <p class="font-mono text-xs text-accent uppercase tracking-wider mt-1">Abilytics Consulting Pvt Ltd · Kochi, India</p>
+          </div>
+          <span class="exp-period">Aug 2022 – Present</span>
+        </div>
+
+        <!-- KPI pills -->
+        <div class="flex flex-wrap gap-3 mb-8">
+          <span class="kpi-pill text-accent border-accent/30 bg-accent/5">↓ 15% AWS Spend</span>
+          <span class="kpi-pill text-blue border-blue/30 bg-blue/5">↓ 70% Deploy Effort</span>
+          <span class="kpi-pill text-amber border-amber/30 bg-amber/5">↓ 40% MTTD</span>
+          <span class="kpi-pill text-accent border-accent/30 bg-accent/5">0 Critical Security Findings</span>
+        </div>
+
+        <ul class="space-y-4">
+          <li class="exp-bullet">Designed and shipped a <strong>source-to-production CI/CD pipeline</strong> (GitHub Actions + Jenkins → Docker → ECR → ECS) covering five containerised services. Deployment effort dropped <strong>70%</strong> and environment drift was eliminated.</li>
+          <li class="exp-bullet">Replaced <strong>100% of manually provisioned AWS infrastructure</strong> with modular Terraform — EC2, ECS, RDS, S3, VPC, IAM. Environment provisioning: hours → <strong>under 10 minutes</strong>; rollbacks became a single command.</li>
+          <li class="exp-bullet">Built a <strong>GitOps-managed Kubernetes platform</strong> with ArgoCD — all manifests stored in Git, cluster state auto-reconciled within <strong>3 minutes</strong>, zero manual kubectl operations.</li>
+          <li class="exp-bullet">Deployed a <strong>three-signal observability stack</strong> — Prometheus + Grafana (metrics), Loki (logs), Tempo + OpenTelemetry (traces) — unified under Grafana Alloy. Added Grafana Faro for Real User Monitoring on the frontend.</li>
+          <li class="exp-bullet">Reduced monthly <strong>AWS spend by 15%</strong>: rightsized EC2 instances, purged unattached EBS volumes, enforced mandatory tagging, converted on-demand to Reserved Instances and Savings Plans.</li>
+          <li class="exp-bullet">Deployed <strong>CloudHealth and Cloudability</strong> across a multi-account AWS Organisation with executive dashboards surfacing per-team cost waste that had previously been invisible.</li>
+          <li class="exp-bullet">Built a <strong>serverless anomaly detection pipeline</strong> (Lambda + EventBridge + SNS) — daily budget scans, automated alerts to engineering and management, reclaiming ~2 hrs/week from manual finance reviews.</li>
+          <li class="exp-bullet">Cut <strong>MTTD by 40%</strong> via centralised CloudWatch dashboards and alarms across ECS, API Gateway, RDS, and Lambda.</li>
+          <li class="exp-bullet">Enforced <strong>least-privilege IAM policies</strong>, encryption at rest and in transit, mandatory resource tagging, and CloudTrail audit logging — cleared all internal compliance reviews with <strong>zero critical findings</strong>.</li>
+          <li class="exp-bullet">Automated routine Linux instance operations (Ubuntu and Amazon Linux) using Bash and Python, eliminating recurring manual tasks and reducing operational toil.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ PROJECTS ══════════════════════ -->
+  <section id="projects" class="py-28 px-6 lg:px-12 bg-surface">
+    <div class="max-w-7xl mx-auto">
+      <div class="section-eyebrow reveal">Case Studies</div>
+      <h2 class="section-title reveal">Key Projects</h2>
+
+      <div class="space-y-6">
+
+        <!-- FEATURED -->
+        <div class="project-card-featured reveal">
+          <div class="project-featured-left">
+            <span class="featured-badge">★ Flagship Project</span>
+            <h3 class="font-display font-bold text-2xl tracking-tight mt-3 mb-4">GitOps Full-Stack Observability Platform</h3>
+
+            <div class="space-y-4 mb-6">
+              <div>
+                <div class="ps-label">Problem</div>
+                <p class="text-white/50 text-sm leading-relaxed">No unified observability — logs, metrics, and traces siloed with no GitOps control. Manual kubectl ops caused configuration drift.</p>
+              </div>
+              <div>
+                <div class="ps-label">Solution</div>
+                <p class="text-white/50 text-sm leading-relaxed">Next.js + NestJS on Kubernetes managed by ArgoCD with selfHeal and prune. Three-signal observability unified under Grafana Alloy. OpenTelemetry SDK on backend, Grafana Faro RUM on frontend.</p>
+              </div>
             </div>
-        </section>
 
-        <!-- ABOUT SECTION -->
-        <section id="about" class="py-20 px-6 border-b border-white/5">
-            <div class="container mx-auto max-w-6xl">
-                <!-- Profile Summary -->
-                <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-3xl font-bold text-white mb-6">Professional Profile</h2>
-                    <div class="space-y-4 text-muted leading-relaxed text-lg">
-                        <p>
-                            I am a results-driven <strong>Cloud DevOps Engineer</strong> with 3.6+ years of experience
-                            optimizing AWS environments. Currently at <strong>Abilytics Consulting</strong>, I bridge
-                            the gap between engineering and finance.
-                        </p>
-                        <p>
-                            My expertise lies in dismantling silos between development and operations while enforcing
-                            strict cost governance. I have successfully led initiatives that slashed monthly cloud bills
-                            by <strong>15%</strong> and reduced deployment friction by <strong>70%</strong>.
-                        </p>
-                    </div>
-                </div>
+            <div class="impact-pill mb-6">
+              <span class="text-accent">⚡</span>
+              <span class="font-mono text-xs text-accent">Drift reconciled in 3min · SLO 99.9% · p95 &lt;500ms · Full frontend-to-DB visibility</span>
             </div>
-        </section>
 
-        <!-- SKILLS SECTION -->
-        <section id="skills" class="py-20 px-6 border-b border-white/5 bg-card/10">
-            <div class="container mx-auto max-w-6xl">
-                <!-- Core Competencies Grid -->
-                <h3 class="text-2xl font-bold text-white mb-12 text-center">Core Competencies</h3>
-                <div class="grid md:grid-cols-3 gap-6">
-
-                    <!-- Card 1: Cloud & FinOps -->
-                    <div
-                        class="bg-card p-6 rounded-xl border border-white/5 shadow-lg hover:border-accent/50 transition-colors">
-                        <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fas fa-cloud text-accent text-xl"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white mb-4">Cloud & FinOps</h4>
-                        <ul class="space-y-2 text-muted text-sm">
-                            <li class="flex items-start gap-2">
-                                <span class="text-accent mt-1">●</span> AWS (EC2, S3, RDS, Lambda, CloudFront)
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-accent mt-1">●</span> GCP
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-accent mt-1">●</span> Cost Explorer, Budgets
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-accent mt-1">●</span> CloudHealth / CloudAbility
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 2: DevOps & Tooling -->
-                    <div
-                        class="bg-card p-6 rounded-xl border border-white/5 shadow-lg hover:border-accent/50 transition-colors">
-                        <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fas fa-tools text-accent text-xl"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white mb-4">DevOps & Tooling</h4>
-                        <ul class="space-y-2 text-muted text-sm">
-                            <li class="flex items-start gap-2">
-                                <span class="text-accent mt-1">●</span> Terraform (IaC)
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-accent mt-1">●</span> Docker, ECS
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-accent mt-1">●</span> Jenkins, GitHub Actions
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-accent mt-1">●</span> CI/CD Automation
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 3: Programming & Scripting -->
-                    <div
-                        class="bg-card p-6 rounded-xl border border-white/5 shadow-lg hover:border-accent/50 transition-colors">
-                        <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fas fa-code text-accent text-xl"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white mb-4">Programming & Scripting</h4>
-                        <ul class="space-y-2 text-muted text-sm">
-                            <li class="flex items-start gap-2">
-                                <span class="text-accent mt-1">●</span> Python (Boto3 automation)
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-accent mt-1">●</span> Node.js (APIs, automation)
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-accent mt-1">●</span> Bash / Shell Scripting
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="proj-tag">ArgoCD</span><span class="proj-tag">Kubernetes</span>
+              <span class="proj-tag">Next.js</span><span class="proj-tag">NestJS</span>
+              <span class="proj-tag">MySQL</span><span class="proj-tag">Prometheus</span>
+              <span class="proj-tag">Grafana</span><span class="proj-tag">Loki</span>
+              <span class="proj-tag">Tempo</span><span class="proj-tag">OpenTelemetry</span>
+              <span class="proj-tag">Grafana Faro</span><span class="proj-tag">Alloy</span>
             </div>
-        </section>
+          </div>
 
-        <!-- EXPERIENCE SECTION -->
-        <section id="experience" class="py-20 px-6 border-b border-white/5 bg-card/20">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-3xl font-bold text-white mb-12 text-center">Professional Experience</h2>
-                <div class="relative border-l border-white/10 ml-6 pl-8 space-y-12">
+          <!-- Architecture diagram -->
+          <div class="project-featured-right">
+            <div class="arch-box">
+              <div class="font-mono text-xs text-muted mb-4 uppercase tracking-widest">Architecture</div>
+              <pre class="arch-pre"><span class="text-accent">[ Git Repository ]</span>
+      │  manifests
+      ▼
+<span class="text-blue">[ ArgoCD ]</span> ── selfHeal + prune
+      │
+      ▼
+<span class="text-accent">[ Kubernetes Cluster ]</span>
+  ├── Next.js
+  │   └── <span class="text-amber">Grafana Faro</span> (RUM)
+  ├── NestJS
+  │   └── <span class="text-amber">OTel SDK</span> (traces)
+  └── MySQL
+      └── <span class="text-amber">mysqld_exporter</span>
 
-                    <!-- Role 1 -->
-                    <div class="relative">
-                        <div
-                            class="absolute -left-[41px] top-1.5 w-5 h-5 bg-accent rounded-full border-4 border-bg shadow-[0_0_0_1px_rgba(255,255,255,0.1)]">
-                        </div>
-                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-white">Software Engineer (Cloud DevOps)</h3>
-                                <h4 class="text-accent text-sm font-medium">Abilytics Consulting Pvt Ltd</h4>
-                            </div>
-                            <span class="text-muted text-sm mt-1 sm:mt-0 font-mono">Aug 2022 - Present</span>
-                        </div>
-                        <ul class="space-y-3 text-muted">
-                            <li class="pl-4 border-l-2 border-white/5 hover:border-accent/50 transition-colors">
-                                <strong class="text-white block mb-1">Cost Optimization Engine</strong>
-                                Rightsized infrastructure and automated resource cleanup, achieving a verified
-                                <strong>15% reduction</strong> in monthly OpEx.
-                            </li>
-                            <li class="pl-4 border-l-2 border-white/5 hover:border-accent/50 transition-colors">
-                                <strong class="text-white block mb-1">Infrastructure as Code (IaC)</strong>
-                                Migrated manual provisioning to <strong>Terraform</strong> modules, reducing environment
-                                spin-up time from hours to minutes.
-                            </li>
-                            <li class="pl-4 border-l-2 border-white/5 hover:border-accent/50 transition-colors">
-                                <strong class="text-white block mb-1">CI/CD Pipeline Modernization</strong>
-                                Architected Jenkins and GitHub Actions workflows for Docker/ECS, reducing manual errors
-                                and cutting deployment effort by <strong>70%</strong>.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+<span class="text-blue">[ Grafana Alloy ]</span> ← collector
+  ├── → <span class="text-accent">Prometheus</span>  (metrics)
+  ├── → <span class="text-accent">Loki</span>       (logs)
+  └── → <span class="text-accent">Tempo</span>      (traces)
+        │
+        ▼
+  <span class="text-blue">[ Grafana · SLO Alerts ]</span></pre>
             </div>
-        </section>
+          </div>
+        </div>
 
-        <!-- PROJECTS SECTION (3D CARDS) -->
-        <section id="projects" class="py-24 px-6">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-3xl font-bold text-white mb-12 text-center">Case Studies</h2>
+        <!-- Project Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
-                <!-- Grid Container with Perspective -->
-                <div class="grid md:grid-cols-3 gap-8 [perspective:1000px]">
-
-                    <!-- Project 1 -->
-                    <div class="project-card group relative bg-card rounded border border-white/5 h-full flex flex-col justify-between hover:border-accent/50 selection:bg-none"
-                        data-link="https://github.com/alwyn79">
-                        <div class="p-6">
-                            <h3 class="text-lg font-bold mb-4 text-white group-hover:text-accent transition-colors">AWS
-                                Cost Optimization System</h3>
-                            <div class="space-y-4 text-sm">
-                                <div>
-                                    <span
-                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Problem</span>
-                                    <p class="text-slate-300">Uncontrolled resource sprawl across multiple AWS accounts
-                                        leading to budget overruns.</p>
-                                </div>
-                                <div>
-                                    <span
-                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Solution</span>
-                                    <p class="text-slate-300">Automated Python/Lambda bot to identify and purge
-                                        unattached EBS volumes and stale snapshots.</p>
-                                </div>
-                                <div class="pt-4 border-t border-white/5">
-                                    <span
-                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Business
-                                        Impact</span>
-                                    <p class="text-accent font-semibold">Reduced monthly cloud spend by ~15%.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-black/20 border-t border-white/5 flex justify-between items-center">
-                            <div class="flex gap-2">
-                                <span
-                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">Python</span>
-                                <span
-                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">Lambda</span>
-                            </div>
-                            <span
-                                class="text-xs font-semibold text-white group-hover:text-accent flex items-center gap-1 transition-colors">
-                                View Code <i class="fab fa-github"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="project-card group relative bg-card rounded border border-white/5 h-full flex flex-col justify-between hover:border-accent/50 selection:bg-none"
-                        data-link="https://github.com/alwyn79">
-                        <div class="p-6">
-                            <h3 class="text-lg font-bold mb-4 text-white group-hover:text-accent transition-colors">
-                                End-to-End CI/CD Automation</h3>
-                            <div class="space-y-4 text-sm">
-                                <div>
-                                    <span
-                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Problem</span>
-                                    <p class="text-slate-300">Manual deployment processes were error-prone, requiring
-                                        distinct effort per release.</p>
-                                </div>
-                                <div>
-                                    <span
-                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Solution</span>
-                                    <p class="text-slate-300">Jenkins/Docker pipeline automating build, security scan,
-                                        and ECS deployment.</p>
-                                </div>
-                                <div class="pt-4 border-t border-white/5">
-                                    <span
-                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Business
-                                        Impact</span>
-                                    <p class="text-accent font-semibold">Saved 70% of engineering time per release.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-black/20 border-t border-white/5 flex justify-between items-center">
-                            <div class="flex gap-2">
-                                <span
-                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">Jenkins</span>
-                                <span
-                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">Docker</span>
-                            </div>
-                            <span
-                                class="text-xs font-semibold text-white group-hover:text-accent flex items-center gap-1 transition-colors">
-                                View Code <i class="fab fa-github"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="project-card group relative bg-card rounded border border-white/5 h-full flex flex-col justify-between hover:border-accent/50 selection:bg-none"
-                        data-link="https://github.com/alwyn79">
-                        <div class="p-6">
-                            <h3 class="text-lg font-bold mb-4 text-white group-hover:text-accent transition-colors">
-                                Serverless Cost Monitoring</h3>
-                            <div class="space-y-4 text-sm">
-                                <div>
-                                    <span
-                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Problem</span>
-                                    <p class="text-slate-300">Delayed visibility into daily cost spikes caused budget
-                                        surprises.</p>
-                                </div>
-                                <div>
-                                    <span
-                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Solution</span>
-                                    <p class="text-slate-300">EventBridge & Lambda solution to audit costs and push SNS
-                                        alerts for anomalies.</p>
-                                </div>
-                                <div class="pt-4 border-t border-white/5">
-                                    <span
-                                        class="text-muted font-medium text-xs uppercase tracking-wider block mb-1">Business
-                                        Impact</span>
-                                    <p class="text-accent font-semibold">Enforced real-time financial accountability.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-black/20 border-t border-white/5 flex justify-between items-center">
-                            <div class="flex gap-2">
-                                <span
-                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">Lambda</span>
-                                <span
-                                    class="text-[10px] uppercase border border-white/10 px-2 py-0.5 rounded text-muted">SNS</span>
-                            </div>
-                            <span
-                                class="text-xs font-semibold text-white group-hover:text-accent flex items-center gap-1 transition-colors">
-                                View Code <i class="fab fa-github"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
+          <div class="project-card reveal">
+            <div class="project-card-icon">🚀</div>
+            <h3 class="font-display font-bold text-base tracking-tight mb-3">End-to-End CI/CD — 5 Microservices</h3>
+            <div class="space-y-3 mb-4">
+              <div><div class="ps-label">Problem</div><p class="text-white/40 text-xs">Manual deployment with configuration drift across Dev, Staging, Prod.</p></div>
+              <div><div class="ps-label">Solution</div><p class="text-white/40 text-xs">Jenkins + GitHub Actions → Docker → ECR → ECS. Zero manual handoffs.</p></div>
             </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="py-20 px-6 border-b border-white/5 bg-card/20">
-            <div class="container mx-auto max-w-3xl text-center">
-                <h2 class="text-3xl font-bold text-white mb-6">Let's Connect</h2>
-                <p class="text-muted mb-10 text-lg">
-                    I am available for opportunities where I can leverage my Cloud & FinOps expertise.
-                </p>
-
-                <div class="flex flex-col md:flex-row justify-center gap-6 mb-12">
-                    <a href="mailto:alwynroy79@gmail.com"
-                        class="group flex items-center justify-center gap-3 p-4 bg-card border border-white/10 rounded hover:border-accent transition-colors w-full md:w-auto">
-                        <div
-                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                            <i class="fas fa-envelope text-accent"></i>
-                        </div>
-                        <div class="text-left">
-                            <span class="block text-xs text-muted uppercase tracking-wider">Email Me</span>
-                            <span class="block text-white font-medium">alwynroy79@gmail.com</span>
-                        </div>
-                    </a>
-
-                    <a href="https://linkedin.com/in/alwyn-roy" target="_blank"
-                        class="group flex items-center justify-center gap-3 p-4 bg-card border border-white/10 rounded hover:border-accent transition-colors w-full md:w-auto">
-                        <div
-                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                            <i class="fab fa-linkedin text-accent"></i>
-                        </div>
-                        <div class="text-left">
-                            <span class="block text-xs text-muted uppercase tracking-wider">LinkedIn</span>
-                            <span class="block text-white font-medium">alwyn-roy</span>
-                        </div>
-                    </a>
-                </div>
+            <div class="impact-pill mb-4"><span class="font-mono text-xs text-accent">↓ 70% deploy effort · Zero config drift</span></div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="proj-tag-sm">Jenkins</span><span class="proj-tag-sm">GitHub Actions</span>
+              <span class="proj-tag-sm">Docker</span><span class="proj-tag-sm">ECR</span><span class="proj-tag-sm">ECS</span>
             </div>
-        </section>
-    </main>
+          </div>
 
-    <footer class="py-8 bg-black/20 text-center text-muted text-xs uppercase tracking-wide">
-        <p>&copy; 2026 Alwyn Roy. All rights reserved.</p>
-    </footer>
+          <div class="project-card reveal">
+            <div class="project-card-icon">⏱</div>
+            <h3 class="font-display font-bold text-base tracking-tight mb-3">Terraform IaC Migration</h3>
+            <div class="space-y-3 mb-4">
+              <div><div class="ps-label">Problem</div><p class="text-white/40 text-xs">100% manual AWS provisioning — hours to spin up, no rollback capability.</p></div>
+              <div><div class="ps-label">Solution</div><p class="text-white/40 text-xs">Reusable Terraform modules with remote state (S3 + DynamoDB locking).</p></div>
+            </div>
+            <div class="impact-pill mb-4"><span class="font-mono text-xs text-accent">Hours → &lt;10 min · Single-command rollbacks</span></div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="proj-tag-sm">Terraform</span><span class="proj-tag-sm">EC2</span>
+              <span class="proj-tag-sm">ECS</span><span class="proj-tag-sm">RDS</span><span class="proj-tag-sm">VPC</span><span class="proj-tag-sm">IAM</span>
+            </div>
+          </div>
 
-    <script src="script.js"></script>
+          <div class="project-card reveal">
+            <div class="project-card-icon">💰</div>
+            <h3 class="font-display font-bold text-base tracking-tight mb-3">FinOps Cost Optimisation</h3>
+            <div class="space-y-3 mb-4">
+              <div><div class="ps-label">Problem</div><p class="text-white/40 text-xs">Uncontrolled resource sprawl, budget overruns, no per-team visibility.</p></div>
+              <div><div class="ps-label">Solution</div><p class="text-white/40 text-xs">Rightsizing, zombie cleanup, tagging enforcement, RI/Savings Plans. CloudHealth + Cloudability dashboards.</p></div>
+            </div>
+            <div class="impact-pill mb-4"><span class="font-mono text-xs text-accent">↓ 15% sustained monthly spend</span></div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="proj-tag-sm">CloudHealth</span><span class="proj-tag-sm">Cloudability</span>
+              <span class="proj-tag-sm">Cost Explorer</span><span class="proj-tag-sm">CUR</span>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-card-icon">🔔</div>
+            <h3 class="font-display font-bold text-base tracking-tight mb-3">Serverless Cost Monitoring</h3>
+            <div class="space-y-3 mb-4">
+              <div><div class="ps-label">Problem</div><p class="text-white/40 text-xs">Delayed visibility into cost spikes — 2 hrs/week on manual reviews.</p></div>
+              <div><div class="ps-label">Solution</div><p class="text-white/40 text-xs">Lambda + EventBridge + SNS zero-maintenance daily anomaly detection pipeline.</p></div>
+            </div>
+            <div class="impact-pill mb-4"><span class="font-mono text-xs text-accent">Days → hours · 2 hrs/week reclaimed</span></div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="proj-tag-sm">Lambda</span><span class="proj-tag-sm">EventBridge</span>
+              <span class="proj-tag-sm">SNS</span><span class="proj-tag-sm">CloudWatch</span><span class="proj-tag-sm">Python</span>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-card-icon">🌐</div>
+            <h3 class="font-display font-bold text-base tracking-tight mb-3">MERN Stack Deployment</h3>
+            <div class="space-y-3 mb-4">
+              <div><div class="ps-label">Problem</div><p class="text-white/40 text-xs">No automated MERN deployment, no CDN, manual release process.</p></div>
+              <div><div class="ps-label">Solution</div><p class="text-white/40 text-xs">Docker + Nginx on EC2, static assets on S3, GitHub Actions orchestration.</p></div>
+            </div>
+            <div class="impact-pill mb-4"><span class="font-mono text-xs text-accent">Zero-touch releases · CDN-served assets</span></div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="proj-tag-sm">MERN</span><span class="proj-tag-sm">Docker</span>
+              <span class="proj-tag-sm">Nginx</span><span class="proj-tag-sm">EC2</span><span class="proj-tag-sm">S3</span>
+            </div>
+          </div>
+
+          <!-- Cert card -->
+          <div class="project-card reveal bg-gradient-to-br from-amber/5 to-orange-500/5 border-amber/20">
+            <div class="text-3xl mb-4">🏆</div>
+            <h3 class="font-display font-bold text-base tracking-tight mb-2">AWS Certified</h3>
+            <p class="text-white/40 text-xs mb-4">Solutions Architect – Associate. Validates expertise in designing distributed systems, cost optimisation, and security on AWS.</p>
+            <div class="ps-label mb-2">Education</div>
+            <p class="text-white/40 text-xs mb-1"><strong class="text-white/70">M.Sc. Computer Science</strong> · St. Berchmans College · 2020–2022</p>
+            <p class="text-white/40 text-xs"><strong class="text-white/70">B.Sc. Computer Science</strong> · College of Applied Science · 2017–2020</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ CONTACT ══════════════════════ -->
+  <section id="contact" class="py-28 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="section-eyebrow reveal">Get In Touch</div>
+      <h2 class="section-title reveal">Let's <span class="text-accent">Connect</span></h2>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <!-- Left -->
+        <div class="reveal">
+          <p class="text-white/50 leading-relaxed mb-8 max-w-lg">
+            Open to opportunities where I can leverage my Cloud, Kubernetes, and FinOps expertise.
+            Whether you're scaling infrastructure, cutting cloud costs, or building observability from scratch — let's talk.
+          </p>
+
+          <div class="space-y-4">
+            <a href="mailto:alwynroy79@gmail.com" class="contact-link-card">
+              <div class="contact-icon">✉</div>
+              <div>
+                <div class="font-display font-bold text-sm">Email</div>
+                <div class="font-mono text-xs text-muted mt-0.5">alwynroy79@gmail.com</div>
+              </div>
+              <span class="ml-auto text-muted text-sm">→</span>
+            </a>
+            <a href="https://linkedin.com/in/alwyn-roy" target="_blank" rel="noopener" class="contact-link-card">
+              <div class="contact-icon font-bold text-xs">in</div>
+              <div>
+                <div class="font-display font-bold text-sm">LinkedIn</div>
+                <div class="font-mono text-xs text-muted mt-0.5">linkedin.com/in/alwyn-roy</div>
+              </div>
+              <span class="ml-auto text-muted text-sm">→</span>
+            </a>
+            <a href="https://github.com/alwyn79" target="_blank" rel="noopener" class="contact-link-card">
+              <div class="contact-icon">⌥</div>
+              <div>
+                <div class="font-display font-bold text-sm">GitHub</div>
+                <div class="font-mono text-xs text-muted mt-0.5">github.com/alwyn79</div>
+              </div>
+              <span class="ml-auto text-muted text-sm">→</span>
+            </a>
+            <a href="tel:+919072093079" class="contact-link-card">
+              <div class="contact-icon">☎</div>
+              <div>
+                <div class="font-display font-bold text-sm">Phone</div>
+                <div class="font-mono text-xs text-muted mt-0.5">+91 90720 93079</div>
+              </div>
+              <span class="ml-auto text-muted text-sm">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div class="reveal">
+          <div class="bg-accent/5 border border-accent/20 rounded-sm p-8">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="w-2 h-2 rounded-full bg-accent animate-pulse-slow"></span>
+              <span class="font-display font-bold">Available for Opportunities</span>
+            </div>
+            <p class="text-white/50 text-sm leading-relaxed mb-6">
+              Based in Kochi, Kerala, India. Open to remote roles globally, hybrid positions in India,
+              and relocation for the right opportunity.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="avail-tag">Remote OK</span>
+              <span class="avail-tag">Hybrid · India</span>
+              <span class="avail-tag">Open to Relocation</span>
+              <span class="avail-tag">Full-Time</span>
+              <span class="avail-tag">Contract</span>
+            </div>
+            <div class="border-t border-white/5 pt-6">
+              <div class="font-mono text-xs text-muted uppercase tracking-widest mb-4">Looking for Roles In</div>
+              <div class="flex flex-wrap gap-2">
+                <span class="avail-tag text-accent border-accent/30">DevOps Engineer</span>
+                <span class="avail-tag text-accent border-accent/30">Cloud Engineer</span>
+                <span class="avail-tag text-accent border-accent/30">SRE</span>
+                <span class="avail-tag text-accent border-accent/30">Platform Engineer</span>
+                <span class="avail-tag text-accent border-accent/30">FinOps Engineer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ FOOTER ══════════════════════ -->
+  <footer class="border-t border-white/5 py-8 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <span class="font-mono text-xs text-muted">© 2026 Alwyn Roy · DevOps Engineer · Kochi, India</span>
+      <div class="flex gap-6">
+        <a href="mailto:alwynroy79@gmail.com"             class="font-mono text-xs text-muted hover:text-accent transition-colors">Email</a>
+        <a href="https://linkedin.com/in/alwyn-roy"       class="font-mono text-xs text-muted hover:text-accent transition-colors" target="_blank">LinkedIn</a>
+        <a href="https://github.com/alwyn79"              class="font-mono text-xs text-muted hover:text-accent transition-colors" target="_blank">GitHub</a>
+        <a href="resume.pdf" download                      class="font-mono text-xs text-muted hover:text-accent transition-colors">Resume</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+/* ═══════════════════════════════════════════
+   Alwyn Roy Portfolio — main.js
+═══════════════════════════════════════════ */
+
+'use strict';
+
+/* ── 1. NAVBAR: scroll behaviour ── */
+(function () {
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  }, { passive: true });
+})();
+
+/* ── 2. MOBILE MENU ── */
+(function () {
+  const btn   = document.getElementById('menu-btn');
+  const menu  = document.getElementById('mobile-menu');
+  const icon  = btn.querySelector('.hamburger-icon');
+  const links = document.querySelectorAll('.mobile-nav-link');
+
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('hidden') === false;
+    icon.classList.toggle('open', open);
+  });
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      icon.classList.remove('open');
+    });
+  });
+})();
+
+/* ── 3. ACTIVE NAV LINK on scroll ── */
+(function () {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle(
+            'active',
+            link.getAttribute('href') === '#' + entry.target.id
+          );
+        });
+      }
+    });
+  }, { threshold: 0.35 });
+
+  sections.forEach(section => observer.observe(section));
+})();
+
+/* ── 4. REVEAL on scroll ── */
+(function () {
+  const elements = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // stagger siblings
+        const siblings = Array.from(entry.target.parentElement.querySelectorAll('.reveal:not(.visible)'));
+        const idx = siblings.indexOf(entry.target);
+        entry.target.style.transitionDelay = `${idx * 0.07}s`;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  elements.forEach(el => observer.observe(el));
+})();
+
+/* ── 5. METRIC COUNTER ANIMATION ── */
+(function () {
+  function animateCount(el) {
+    const target  = parseInt(el.dataset.count, 10);
+    const suffix  = el.dataset.suffix || '';
+    const duration = 1600;
+    const start   = performance.now();
+
+    function update(now) {
+      const elapsed  = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-out cubic
+      const ease     = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(target * ease) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const metricEls = document.querySelectorAll('[data-count]');
+  const observer  = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+
+  metricEls.forEach(el => observer.observe(el));
+})();
+
+/* ── 6. CURSOR GLOW (desktop only) ── */
+(function () {
+  if (window.matchMedia('(pointer: coarse)').matches) return; // skip touch
+
+  const glow = document.createElement('div');
+  glow.className = 'cursor-glow';
+  document.body.appendChild(glow);
+
+  let mouseX = 0, mouseY = 0;
+  let glowX = 0, glowY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }, { passive: true });
+
+  function animate() {
+    glowX += (mouseX - glowX) * 0.08;
+    glowY += (mouseY - glowY) * 0.08;
+    glow.style.left = glowX + 'px';
+    glow.style.top  = glowY + 'px';
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ── 7. SMOOTH SCROLL for anchor links ── */
+(function () {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      const offset = 64; // navbar height
+      const top    = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+})();
+
+/* ── 8. SKILL TAG hover ripple ── */
+(function () {
+  document.querySelectorAll('.skill-tag').forEach(tag => {
+    tag.addEventListener('mouseenter', function () {
+      this.style.transform = 'translateY(-1px)';
+    });
+    tag.addEventListener('mouseleave', function () {
+      this.style.transform = '';
+    });
+  });
+})();
+
+/* ── 9. PROJECT CARD tilt effect (desktop) ── */
+(function () {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect    = card.getBoundingClientRect();
+      const x       = e.clientX - rect.left;
+      const y       = e.clientY - rect.top;
+      const centerX = rect.width  / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -4;
+      const rotateY = ((x - centerX) / centerX) *  4;
+      card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = 'transform 0.4s ease';
+    });
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform 0.1s ease';
+    });
+  });
+})();
+
+/* ── 10. TYPING EFFECT on hero eyebrow ── */
+(function () {
+  const el   = document.querySelector('.hero-eyebrow-type');
+  if (!el) return;
+  const text = el.dataset.text || el.textContent;
+  el.textContent = '';
+  el.style.visibility = 'visible';
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      el.textContent += text[i++];
+      setTimeout(type, 45);
+    }
+  }
+  setTimeout(type, 800);
+})();
+
+/* ── 11. PAGE LOAD progress bar ── */
+(function () {
+  const bar = document.createElement('div');
+  Object.assign(bar.style, {
+    position: 'fixed', top: '0', left: '0',
+    height: '2px', width: '0%',
+    background: '#00e5c0',
+    zIndex: '9999',
+    transition: 'width 0.3s ease, opacity 0.4s ease'
+  });
+  document.body.appendChild(bar);
+
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 20;
+    if (progress > 90) { clearInterval(interval); progress = 90; }
+    bar.style.width = progress + '%';
+  }, 150);
+
+  window.addEventListener('load', () => {
+    clearInterval(interval);
+    bar.style.width = '100%';
+    setTimeout(() => { bar.style.opacity = '0'; }, 400);
+    setTimeout(() => { bar.remove(); }, 800);
+  });
+})();
+
+  </script>
 </body>
-
 </html>
